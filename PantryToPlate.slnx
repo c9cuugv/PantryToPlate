@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="PantryToPlate.Core/PantryToPlate.Core.csproj" />
+  <Project Path="PantryToPlate.Tests/PantryToPlate.Tests.csproj" />
+  <Project Path="PantryToPlate/PantryToPlate.csproj" />
+</Solution>
