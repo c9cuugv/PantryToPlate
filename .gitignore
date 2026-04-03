@@ -1,0 +1,56 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# MAUI/Workspace
+**/bin/**
+**/obj/**
+*/.vs/**
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+# Rider
+.idea/
+*.sln.iml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# SQLite local database
+*.db
+*.db-shm
+*.db-wal
+
+# Local settings
+*.local
+
+# Package cache
+**/packages/**
+
+# generated docs
+**/doc/**
+
+# lock files
+project.assets.json
+
+# Ignore any generated giant files
+*.log
+*~
+
+# end .gitignore
