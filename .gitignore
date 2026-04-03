@@ -53,4 +53,6 @@ project.assets.json
 *.log
 *~
 
-# end .gitignore
+# end .gitignore**/bin/
+**/obj/
+*.pdb
