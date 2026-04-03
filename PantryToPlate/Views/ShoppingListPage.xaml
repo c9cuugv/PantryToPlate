@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:PantryToPlate.ViewModels"
+             x:Class="PantryToPlate.ShoppingListPage"
+             Title="Shopping List">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ShoppingListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="15">
+            <Label Text="Shopping List"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Load Shopping List"
+                    Command="{Binding LoadShoppingListItemsCommand}"
+                    BackgroundColor="DarkBlue"
+                    TextColor="White" />
+
+            <CollectionView ItemsSource="{Binding ShoppingListItems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10" Padding="10" Margin="5" BackgroundColor="LightGray">
+                            <HorizontalStackLayout VerticalOptions="Center" Spacing="12">
+                                <CheckBox IsChecked="{Binding IsPurchased, Mode=TwoWay}"
+                                          CheckedChanged="OnPurchasedToggled" />
+                                <Label Text="{Binding Ingredient.Name}"
+                                       FontSize="16"
+                                       TextDecorations="{Binding IsPurchased, Converter={StaticResource BoolToStrikethroughConverter}}" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Clear Purchased"
+                    Command="{Binding ClearPurchasedCommand}"
+                    BackgroundColor="Red"
+                    TextColor="White" />
+
+            <Label Text="No shopping items found. Add recipes or ingredients to generate your list."
+                   IsVisible="{Binding ShoppingListItems, Converter={StaticResource InverseBoolConverter}}"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:PantryToPlate.ViewModels"
+             x:Class="PantryToPlate.RecipeEditorPage"
+             Title="Add Recipe">
+
+    <ContentPage.BindingContext>
+        <viewmodels:RecipeEditorViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="12">
+            <Label Text="Create New Recipe" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <Entry Placeholder="Recipe Name" Text="{Binding RecipeName}" />
+            <Editor Placeholder="Instructions" HeightRequest="120" Text="{Binding Instructions}" />
+
+            <Button Text="Save Recipe"
+                    Command="{Binding SaveRecipeCommand}"
+                    IsEnabled="{Binding IsSaving, Converter={StaticResource InverseBoolConverter}}"
+                    BackgroundColor="Blue"
+                    TextColor="White" />
+
+            <ActivityIndicator IsRunning="{Binding IsSaving}" IsVisible="{Binding IsSaving}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

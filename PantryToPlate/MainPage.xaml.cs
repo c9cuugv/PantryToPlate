@@ -1,23 +1,27 @@
-﻿namespace PantryToPlate;
+﻿using PantryToPlate.ViewModels;
+
+namespace PantryToPlate;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    private HomeViewModel ViewModel => (HomeViewModel)BindingContext;
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage()
+    {
+        InitializeComponent();
+    }
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-		count++;
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await ViewModel.LoadRecipesAsync();
+    }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+    private void OnRecipeSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is Core.Models.Recipe selectedRecipe)
+        {
+            ViewModel.NavigateToRecipeCommand.Execute(selectedRecipe);
+        }
+    }
 }

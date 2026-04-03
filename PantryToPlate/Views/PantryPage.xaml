@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:PantryToPlate.ViewModels"
+             x:Class="PantryToPlate.PantryPage"
+             Title="Pantry">
+
+    <ContentPage.BindingContext>
+        <viewmodels:PantryViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="15">
+            <Label Text="My Pantry"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="LightYellow">
+                <StackLayout Spacing="10">
+                    <Label Text="Add Ingredient" FontSize="18" FontAttributes="Bold" />
+
+                    <Entry Placeholder="Ingredient name"
+                            Text="{Binding NewIngredientName}" />
+
+                    <Entry Placeholder="Quantity"
+                            Text="{Binding NewQuantity}"
+                            Keyboard="Numeric" />
+
+                    <Entry Placeholder="Unit (e.g., cups, lbs, oz)"
+                            Text="{Binding NewUnit}" />
+
+                    <Button Text="Add to Pantry"
+                            Command="{Binding AddPantryItemCommand}"
+                            BackgroundColor="Green"
+                            TextColor="White" />
+                </StackLayout>
+            </Frame>
+
+            <CollectionView ItemsSource="{Binding PantryItems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Delete"
+                                             BackgroundColor="Red"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PantryViewModel}}, Path=DeletePantryItemCommand}"
+                                             CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
+                            <Frame CornerRadius="10"
+                                   Padding="15"
+                                   Margin="5"
+                                   BackgroundColor="LightGray">
+                                <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                                    <Label Text="{Binding Ingredient.Name}"
+                                           FontSize="16"
+                                           FontAttributes="Bold" />
+                                    <Label Text="{Binding QuantityInStock}"
+                                           FontSize="16" />
+                                    <Label Text="{Binding Unit}"
+                                           FontSize="16" />
+                                </HorizontalStackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="No items in pantry yet!"
+                   IsVisible="{Binding PantryItems, Converter={StaticResource InverseBoolConverter}}"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

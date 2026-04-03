@@ -7,5 +7,23 @@
       "Bash(dotnet add:*)",
       "Bash(dotnet sln:*)"
     ]
+  },
+  "assistantPreferences": {
+    "responseStyle": "concise",
+    "format": "markdown",
+    "bulletPointDensity": "medium",
+    "language": "en-US",
+    "codePolicy": {
+      "provideOnlyWorkingCode": true,
+      "minimizeSideEffects": true,
+      "includeLineComments": true
+    },
+    "taskLog": true,
+    "projectChecklist": true
+  },
+  "providedContext": {
+    "project": "PantryToPlate",
+    "architecture": "MAUI + Core library + xUnit tests",
+    "workflow": "edit PROGRESS.md after each task, add ViewModels/Views/Converters, run dotnet test, update status"
   }
 }

@@ -6,9 +6,32 @@
     xmlns:local="clr-namespace:PantryToPlate"
     Title="PantryToPlate">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Home" Icon="home.png">
+            <ShellContent
+                Title="Home"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" />
+        </Tab>
+        <Tab Title="Pantry" Icon="pantry.png">
+            <ShellContent
+                Title="Pantry"
+                ContentTemplate="{DataTemplate local:PantryPage}"
+                Route="PantryPage" />
+        </Tab>
+        <Tab Title="Shopping List" Icon="shopping.png">
+            <ShellContent
+                Title="Shopping List"
+                ContentTemplate="{DataTemplate local:ShoppingListPage}"
+                Route="ShoppingListPage" />
+        </Tab>
+    </TabBar>
 
+    <Shell.FlyoutBehavior>
+        <OnPlatform x:TypeArguments="FlyoutBehavior">
+            <On Platform="Android, iOS">Disabled</On>
+        </OnPlatform>
+    </Shell.FlyoutBehavior>
+
+<!-- Continue with app shell routes configured in AppShell.xaml.cs -->
 </Shell>
