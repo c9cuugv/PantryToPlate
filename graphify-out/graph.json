@@ -1,0 +1,2014 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "mvvm_pattern_viewmodels",
+        "label": "MVVM Pattern ViewModels",
+        "nodes": [
+          "baseviewmodel_baseviewmodel",
+          "relaycommand_relaycommand",
+          "homeviewmodel_homeviewmodel",
+          "recipedetailviewmodel_recipedetailviewmodel",
+          "recipeeditorviewmodel_recipeeditorviewmodel",
+          "pantryviewmodel_pantryviewmodel",
+          "shoppinglistviewmodel_shoppinglistviewmodel"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs"
+      },
+      {
+        "id": "data_layer_ef_core",
+        "label": "EF Core Data Layer",
+        "nodes": [
+          "appdbcontext_appdbcontext",
+          "databaseseeder_databaseseeder",
+          "recipe_recipe",
+          "ingredient_ingredient",
+          "recipeingredient_recipeingredient",
+          "pantryitem_pantryitem",
+          "shoppinglistitem_shoppinglistitem"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "PantryToPlate.Core/Data/AppDbContext.cs"
+      },
+      {
+        "id": "recipe_availability_flow",
+        "label": "Recipe Availability Flow",
+        "nodes": [
+          "recipeservice_recipeservice",
+          "pantryitem_pantryitem",
+          "recipeingredient_recipeingredient",
+          "recipe_recipe"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "PantryToPlate.Core/Services/RecipeService.cs"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "TestService.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/TestService.cs",
+      "source_location": "L1",
+      "id": "testservice",
+      "community": 7
+    },
+    {
+      "label": "TestService",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/TestService.cs",
+      "source_location": "L3",
+      "id": "testservice_testservice",
+      "community": 7
+    },
+    {
+      "label": "AppDbContext.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": "L1",
+      "id": "appdbcontext",
+      "community": 0
+    },
+    {
+      "label": "AppDbContext",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": "L7",
+      "id": "appdbcontext_appdbcontext",
+      "community": 0
+    },
+    {
+      "label": "DbContext",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "dbcontext",
+      "community": 0
+    },
+    {
+      "label": ".OnConfiguring()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": "L20",
+      "id": "appdbcontext_appdbcontext_onconfiguring",
+      "community": 0
+    },
+    {
+      "label": ".OnModelCreating()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": "L30",
+      "id": "appdbcontext_appdbcontext_onmodelcreating",
+      "community": 0
+    },
+    {
+      "label": "DatabaseSeeder.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Data/DatabaseSeeder.cs",
+      "source_location": "L1",
+      "id": "databaseseeder",
+      "community": 0
+    },
+    {
+      "label": "DatabaseSeeder",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Data/DatabaseSeeder.cs",
+      "source_location": "L5",
+      "id": "databaseseeder_databaseseeder",
+      "community": 0
+    },
+    {
+      "label": ".SeedAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Data/DatabaseSeeder.cs",
+      "source_location": "L7",
+      "id": "databaseseeder_databaseseeder_seedasync",
+      "community": 0
+    },
+    {
+      "label": "Ingredient.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/Ingredient.cs",
+      "source_location": "L1",
+      "id": "ingredient",
+      "community": 0
+    },
+    {
+      "label": "Ingredient",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/Ingredient.cs",
+      "source_location": "L3",
+      "id": "ingredient_ingredient",
+      "community": 0
+    },
+    {
+      "label": "PantryItem.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/PantryItem.cs",
+      "source_location": "L1",
+      "id": "pantryitem",
+      "community": 5
+    },
+    {
+      "label": "PantryItem",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/PantryItem.cs",
+      "source_location": "L3",
+      "id": "pantryitem_pantryitem",
+      "community": 5
+    },
+    {
+      "label": "Recipe.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/Recipe.cs",
+      "source_location": "L1",
+      "id": "recipe",
+      "community": 0
+    },
+    {
+      "label": "Recipe",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/Recipe.cs",
+      "source_location": "L3",
+      "id": "recipe_recipe",
+      "community": 0
+    },
+    {
+      "label": "RecipeIngredient.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/RecipeIngredient.cs",
+      "source_location": "L1",
+      "id": "recipeingredient",
+      "community": 0
+    },
+    {
+      "label": "RecipeIngredient",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/RecipeIngredient.cs",
+      "source_location": "L3",
+      "id": "recipeingredient_recipeingredient",
+      "community": 0
+    },
+    {
+      "label": "ShoppingListItem.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/ShoppingListItem.cs",
+      "source_location": "L1",
+      "id": "shoppinglistitem",
+      "community": 0
+    },
+    {
+      "label": "ShoppingListItem",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Models/ShoppingListItem.cs",
+      "source_location": "L3",
+      "id": "shoppinglistitem_shoppinglistitem",
+      "community": 0
+    },
+    {
+      "label": "PantryToPlate.Core.AssemblyInfo.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/obj/Release/net10.0/PantryToPlate.Core.AssemblyInfo.cs",
+      "source_location": "L1",
+      "id": "pantrytoplate_core_assemblyinfo",
+      "community": 8
+    },
+    {
+      "label": "PantryToPlate.Core.GlobalUsings.g.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/obj/Release/net10.0/PantryToPlate.Core.GlobalUsings.g.cs",
+      "source_location": "L1",
+      "id": "pantrytoplate_core_globalusings_g",
+      "community": 9
+    },
+    {
+      "label": "INavigationService.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/INavigationService.cs",
+      "source_location": "L1",
+      "id": "inavigationservice",
+      "community": 4
+    },
+    {
+      "label": "INavigationService",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/INavigationService.cs",
+      "source_location": "L5",
+      "id": "inavigationservice_inavigationservice",
+      "community": 4
+    },
+    {
+      "label": ".GoToAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/INavigationService.cs",
+      "source_location": "L7",
+      "id": "inavigationservice_inavigationservice_gotoasync",
+      "community": 4
+    },
+    {
+      "label": "IRecipeService",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "irecipeservice",
+      "community": 1
+    },
+    {
+      "label": "IRecipeService",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L5",
+      "id": "irecipeservice_irecipeservice",
+      "community": 1
+    },
+    {
+      "label": ".GetAvailableRecipesAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L7",
+      "id": "irecipeservice_irecipeservice_getavailablerecipesasync",
+      "community": 1
+    },
+    {
+      "label": ".GetRecipeByIdAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L8",
+      "id": "irecipeservice_irecipeservice_getrecipebyidasync",
+      "community": 1
+    },
+    {
+      "label": ".CookRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L9",
+      "id": "irecipeservice_irecipeservice_cookrecipeasync",
+      "community": 1
+    },
+    {
+      "label": ".AddRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L10",
+      "id": "irecipeservice_irecipeservice_addrecipeasync",
+      "community": 1
+    },
+    {
+      "label": ".UpdateRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L11",
+      "id": "irecipeservice_irecipeservice_updaterecipeasync",
+      "community": 1
+    },
+    {
+      "label": ".DeleteRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L12",
+      "id": "irecipeservice_irecipeservice_deleterecipeasync",
+      "community": 1
+    },
+    {
+      "label": "RecipeService.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L1",
+      "id": "recipeservice",
+      "community": 1
+    },
+    {
+      "label": "RecipeService",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L7",
+      "id": "recipeservice_recipeservice",
+      "community": 1
+    },
+    {
+      "label": ".GetAvailableRecipesAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L16",
+      "id": "recipeservice_recipeservice_getavailablerecipesasync",
+      "community": 1
+    },
+    {
+      "label": ".GetRecipeByIdAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L36",
+      "id": "recipeservice_recipeservice_getrecipebyidasync",
+      "community": 1
+    },
+    {
+      "label": ".AddRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L44",
+      "id": "recipeservice_recipeservice_addrecipeasync",
+      "community": 1
+    },
+    {
+      "label": ".UpdateRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L50",
+      "id": "recipeservice_recipeservice_updaterecipeasync",
+      "community": 1
+    },
+    {
+      "label": ".DeleteRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L81",
+      "id": "recipeservice_recipeservice_deleterecipeasync",
+      "community": 1
+    },
+    {
+      "label": ".CookRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L93",
+      "id": "recipeservice_recipeservice_cookrecipeasync",
+      "community": 1
+    },
+    {
+      "label": "BaseViewModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "baseviewmodel",
+      "community": 3
+    },
+    {
+      "label": "BaseViewModel",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L7",
+      "id": "baseviewmodel_baseviewmodel",
+      "community": 3
+    },
+    {
+      "label": "INotifyPropertyChanged",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "inotifypropertychanged",
+      "community": 3
+    },
+    {
+      "label": ".OnPropertyChanged()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L11",
+      "id": "baseviewmodel_baseviewmodel_onpropertychanged",
+      "community": 3
+    },
+    {
+      "label": ".SetProperty()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L16",
+      "id": "baseviewmodel_baseviewmodel_setproperty",
+      "community": 3
+    },
+    {
+      "label": ".ExecuteBusyAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L29",
+      "id": "baseviewmodel_baseviewmodel_executebusyasync",
+      "community": 3
+    },
+    {
+      "label": "HomeViewModel.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L1",
+      "id": "homeviewmodel",
+      "community": 2
+    },
+    {
+      "label": "HomeViewModel",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L8",
+      "id": "homeviewmodel_homeviewmodel",
+      "community": 2
+    },
+    {
+      "label": ".LoadRecipesAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L33",
+      "id": "homeviewmodel_homeviewmodel_loadrecipesasync",
+      "community": 2
+    },
+    {
+      "label": ".NavigateToRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L54",
+      "id": "homeviewmodel_homeviewmodel_navigatetorecipeasync",
+      "community": 2
+    },
+    {
+      "label": ".CreateRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L60",
+      "id": "homeviewmodel_homeviewmodel_createrecipeasync",
+      "community": 2
+    },
+    {
+      "label": "PantryViewModel.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L1",
+      "id": "pantryviewmodel",
+      "community": 5
+    },
+    {
+      "label": "PantryViewModel",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L10",
+      "id": "pantryviewmodel_pantryviewmodel",
+      "community": 5
+    },
+    {
+      "label": ".LoadPantryItemsAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L39",
+      "id": "pantryviewmodel_pantryviewmodel_loadpantryitemsasync",
+      "community": 5
+    },
+    {
+      "label": ".AddPantryItemAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L63",
+      "id": "pantryviewmodel_pantryviewmodel_addpantryitemasync",
+      "community": 5
+    },
+    {
+      "label": ".DeletePantryItemAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L109",
+      "id": "pantryviewmodel_pantryviewmodel_deletepantryitemasync",
+      "community": 5
+    },
+    {
+      "label": "RecipeDetailViewModel.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L1",
+      "id": "recipedetailviewmodel",
+      "community": 4
+    },
+    {
+      "label": "RecipeDetailViewModel",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L7",
+      "id": "recipedetailviewmodel_recipedetailviewmodel",
+      "community": 4
+    },
+    {
+      "label": ".LoadRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L34",
+      "id": "recipedetailviewmodel_recipedetailviewmodel_loadrecipeasync",
+      "community": 4
+    },
+    {
+      "label": ".CookRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L50",
+      "id": "recipedetailviewmodel_recipedetailviewmodel_cookrecipeasync",
+      "community": 4
+    },
+    {
+      "label": ".DeleteRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L67",
+      "id": "recipedetailviewmodel_recipedetailviewmodel_deleterecipeasync",
+      "community": 4
+    },
+    {
+      "label": "RecipeEditorViewModel.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": "L1",
+      "id": "recipeeditorviewmodel",
+      "community": 3
+    },
+    {
+      "label": "RecipeEditorViewModel",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": "L7",
+      "id": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "community": 3
+    },
+    {
+      "label": ".SaveRecipeAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": "L35",
+      "id": "recipeeditorviewmodel_recipeeditorviewmodel_saverecipeasync",
+      "community": 3
+    },
+    {
+      "label": "RelayCommand.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L1",
+      "id": "relaycommand",
+      "community": 2
+    },
+    {
+      "label": "RelayCommand",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L7",
+      "id": "relaycommand_relaycommand",
+      "community": 2
+    },
+    {
+      "label": "ICommand",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "id": "icommand",
+      "community": 2
+    },
+    {
+      "label": ".RaiseCanExecuteChanged()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L22",
+      "id": "relaycommand_relaycommand_raisecanexecutechanged",
+      "community": 2
+    },
+    {
+      "label": ".CanExecute()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L23",
+      "id": "relaycommand_relaycommand_canexecute",
+      "community": 2
+    },
+    {
+      "label": ".Execute()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L24",
+      "id": "relaycommand_relaycommand_execute",
+      "community": 2
+    },
+    {
+      "label": "ShoppingListViewModel.cs",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L1",
+      "id": "shoppinglistviewmodel",
+      "community": 6
+    },
+    {
+      "label": "ShoppingListViewModel",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L10",
+      "id": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "community": 6
+    },
+    {
+      "label": ".LoadShoppingListItemsAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L30",
+      "id": "shoppinglistviewmodel_shoppinglistviewmodel_loadshoppinglistitemsasync",
+      "community": 6
+    },
+    {
+      "label": ".TogglePurchasedAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L54",
+      "id": "shoppinglistviewmodel_shoppinglistviewmodel_togglepurchasedasync",
+      "community": 6
+    },
+    {
+      "label": ".ClearPurchasedAsync()",
+      "file_type": "code",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L69",
+      "id": "shoppinglistviewmodel_shoppinglistviewmodel_clearpurchasedasync",
+      "community": 6
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/TestService.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "testservice",
+      "_tgt": "testservice_testservice",
+      "source": "testservice",
+      "target": "testservice_testservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "appdbcontext",
+      "_tgt": "appdbcontext_appdbcontext",
+      "source": "appdbcontext",
+      "target": "appdbcontext_appdbcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "appdbcontext_appdbcontext",
+      "_tgt": "dbcontext",
+      "source": "appdbcontext_appdbcontext",
+      "target": "dbcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "appdbcontext_appdbcontext",
+      "_tgt": "appdbcontext_appdbcontext_onconfiguring",
+      "source": "appdbcontext_appdbcontext",
+      "target": "appdbcontext_appdbcontext_onconfiguring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "appdbcontext_appdbcontext",
+      "_tgt": "appdbcontext_appdbcontext_onmodelcreating",
+      "source": "appdbcontext_appdbcontext",
+      "target": "appdbcontext_appdbcontext_onmodelcreating",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "appdbcontext_appdbcontext",
+      "source": "appdbcontext_appdbcontext",
+      "target": "recipeservice_recipeservice"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "appdbcontext_appdbcontext",
+      "_tgt": "recipe_recipe",
+      "source": "appdbcontext_appdbcontext",
+      "target": "recipe_recipe"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "appdbcontext_appdbcontext",
+      "_tgt": "ingredient_ingredient",
+      "source": "appdbcontext_appdbcontext",
+      "target": "ingredient_ingredient"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "appdbcontext_appdbcontext",
+      "_tgt": "recipeingredient_recipeingredient",
+      "source": "appdbcontext_appdbcontext",
+      "target": "recipeingredient_recipeingredient"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "appdbcontext_appdbcontext",
+      "_tgt": "pantryitem_pantryitem",
+      "source": "appdbcontext_appdbcontext",
+      "target": "pantryitem_pantryitem"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "appdbcontext_appdbcontext",
+      "_tgt": "shoppinglistitem_shoppinglistitem",
+      "source": "appdbcontext_appdbcontext",
+      "target": "shoppinglistitem_shoppinglistitem"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Data/DatabaseSeeder.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "databaseseeder_databaseseeder",
+      "_tgt": "appdbcontext_appdbcontext",
+      "source": "appdbcontext_appdbcontext",
+      "target": "databaseseeder_databaseseeder"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "appdbcontext_appdbcontext",
+      "source": "appdbcontext_appdbcontext",
+      "target": "pantryviewmodel_pantryviewmodel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "_tgt": "appdbcontext_appdbcontext",
+      "source": "appdbcontext_appdbcontext",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Data/DatabaseSeeder.cs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "databaseseeder",
+      "_tgt": "databaseseeder_databaseseeder",
+      "source": "databaseseeder",
+      "target": "databaseseeder_databaseseeder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Data/DatabaseSeeder.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "databaseseeder_databaseseeder",
+      "_tgt": "databaseseeder_databaseseeder_seedasync",
+      "source": "databaseseeder_databaseseeder",
+      "target": "databaseseeder_databaseseeder_seedasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Data/DatabaseSeeder.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "databaseseeder_databaseseeder",
+      "_tgt": "ingredient_ingredient",
+      "source": "databaseseeder_databaseseeder",
+      "target": "ingredient_ingredient"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Data/DatabaseSeeder.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "databaseseeder_databaseseeder",
+      "_tgt": "recipe_recipe",
+      "source": "databaseseeder_databaseseeder",
+      "target": "recipe_recipe"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Data/DatabaseSeeder.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "databaseseeder_databaseseeder",
+      "_tgt": "recipeingredient_recipeingredient",
+      "source": "databaseseeder_databaseseeder",
+      "target": "recipeingredient_recipeingredient"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Models/Ingredient.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "ingredient",
+      "_tgt": "ingredient_ingredient",
+      "source": "ingredient",
+      "target": "ingredient_ingredient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Models/RecipeIngredient.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeingredient_recipeingredient",
+      "_tgt": "ingredient_ingredient",
+      "source": "ingredient_ingredient",
+      "target": "recipeingredient_recipeingredient"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Models/PantryItem.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "pantryitem_pantryitem",
+      "_tgt": "ingredient_ingredient",
+      "source": "ingredient_ingredient",
+      "target": "pantryitem_pantryitem"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Models/ShoppingListItem.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "shoppinglistitem_shoppinglistitem",
+      "_tgt": "ingredient_ingredient",
+      "source": "ingredient_ingredient",
+      "target": "shoppinglistitem_shoppinglistitem"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "ingredient_ingredient",
+      "source": "ingredient_ingredient",
+      "target": "pantryviewmodel_pantryviewmodel"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "_tgt": "ingredient_ingredient",
+      "source": "ingredient_ingredient",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Models/PantryItem.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "pantryitem",
+      "_tgt": "pantryitem_pantryitem",
+      "source": "pantryitem",
+      "target": "pantryitem_pantryitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "pantryitem_pantryitem",
+      "source": "pantryitem_pantryitem",
+      "target": "recipeservice_recipeservice"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "pantryitem_pantryitem",
+      "source": "pantryitem_pantryitem",
+      "target": "pantryviewmodel_pantryviewmodel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Models/Recipe.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "recipe",
+      "_tgt": "recipe_recipe",
+      "source": "recipe",
+      "target": "recipe_recipe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "recipe_recipe",
+      "source": "recipe_recipe",
+      "target": "recipeservice_recipeservice"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Models/RecipeIngredient.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeingredient_recipeingredient",
+      "_tgt": "recipe_recipe",
+      "source": "recipe_recipe",
+      "target": "recipeingredient_recipeingredient"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "homeviewmodel_homeviewmodel",
+      "_tgt": "recipe_recipe",
+      "source": "recipe_recipe",
+      "target": "homeviewmodel_homeviewmodel"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel_recipedetailviewmodel",
+      "_tgt": "recipe_recipe",
+      "source": "recipe_recipe",
+      "target": "recipedetailviewmodel_recipedetailviewmodel"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "_tgt": "recipe_recipe",
+      "source": "recipe_recipe",
+      "target": "recipeeditorviewmodel_recipeeditorviewmodel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "irecipeservice_irecipeservice",
+      "_tgt": "recipe_recipe",
+      "source": "recipe_recipe",
+      "target": "irecipeservice_irecipeservice"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Models/RecipeIngredient.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "recipeingredient",
+      "_tgt": "recipeingredient_recipeingredient",
+      "source": "recipeingredient",
+      "target": "recipeingredient_recipeingredient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "recipeingredient_recipeingredient",
+      "source": "recipeingredient_recipeingredient",
+      "target": "recipeservice_recipeservice"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Models/ShoppingListItem.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "shoppinglistitem",
+      "_tgt": "shoppinglistitem_shoppinglistitem",
+      "source": "shoppinglistitem",
+      "target": "shoppinglistitem_shoppinglistitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "_tgt": "shoppinglistitem_shoppinglistitem",
+      "source": "shoppinglistitem_shoppinglistitem",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/INavigationService.cs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "inavigationservice",
+      "_tgt": "inavigationservice_inavigationservice",
+      "source": "inavigationservice",
+      "target": "inavigationservice_inavigationservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/INavigationService.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "inavigationservice_inavigationservice",
+      "_tgt": "inavigationservice_inavigationservice_gotoasync",
+      "source": "inavigationservice_inavigationservice",
+      "target": "inavigationservice_inavigationservice_gotoasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "homeviewmodel_homeviewmodel",
+      "_tgt": "inavigationservice_inavigationservice",
+      "source": "inavigationservice_inavigationservice",
+      "target": "homeviewmodel_homeviewmodel"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel_recipedetailviewmodel",
+      "_tgt": "inavigationservice_inavigationservice",
+      "source": "inavigationservice_inavigationservice",
+      "target": "recipedetailviewmodel_recipedetailviewmodel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "_tgt": "inavigationservice_inavigationservice",
+      "source": "inavigationservice_inavigationservice",
+      "target": "recipeeditorviewmodel_recipeeditorviewmodel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "irecipeservice",
+      "_tgt": "irecipeservice_irecipeservice",
+      "source": "irecipeservice",
+      "target": "irecipeservice_irecipeservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "irecipeservice",
+      "source": "irecipeservice",
+      "target": "recipeservice_recipeservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "irecipeservice_irecipeservice",
+      "_tgt": "irecipeservice_irecipeservice_getavailablerecipesasync",
+      "source": "irecipeservice_irecipeservice",
+      "target": "irecipeservice_irecipeservice_getavailablerecipesasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "irecipeservice_irecipeservice",
+      "_tgt": "irecipeservice_irecipeservice_getrecipebyidasync",
+      "source": "irecipeservice_irecipeservice",
+      "target": "irecipeservice_irecipeservice_getrecipebyidasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "irecipeservice_irecipeservice",
+      "_tgt": "irecipeservice_irecipeservice_cookrecipeasync",
+      "source": "irecipeservice_irecipeservice",
+      "target": "irecipeservice_irecipeservice_cookrecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "irecipeservice_irecipeservice",
+      "_tgt": "irecipeservice_irecipeservice_addrecipeasync",
+      "source": "irecipeservice_irecipeservice",
+      "target": "irecipeservice_irecipeservice_addrecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "irecipeservice_irecipeservice",
+      "_tgt": "irecipeservice_irecipeservice_updaterecipeasync",
+      "source": "irecipeservice_irecipeservice",
+      "target": "irecipeservice_irecipeservice_updaterecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/IRecipeService.cs",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "irecipeservice_irecipeservice",
+      "_tgt": "irecipeservice_irecipeservice_deleterecipeasync",
+      "source": "irecipeservice_irecipeservice",
+      "target": "irecipeservice_irecipeservice_deleterecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "irecipeservice_irecipeservice",
+      "source": "irecipeservice_irecipeservice",
+      "target": "recipeservice_recipeservice"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "homeviewmodel_homeviewmodel",
+      "_tgt": "irecipeservice_irecipeservice",
+      "source": "irecipeservice_irecipeservice",
+      "target": "homeviewmodel_homeviewmodel"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel_recipedetailviewmodel",
+      "_tgt": "irecipeservice_irecipeservice",
+      "source": "irecipeservice_irecipeservice",
+      "target": "recipedetailviewmodel_recipedetailviewmodel"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "_tgt": "irecipeservice_irecipeservice",
+      "source": "irecipeservice_irecipeservice",
+      "target": "recipeeditorviewmodel_recipeeditorviewmodel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "recipeservice",
+      "_tgt": "recipeservice_recipeservice",
+      "source": "recipeservice",
+      "target": "recipeservice_recipeservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "recipeservice_recipeservice_getavailablerecipesasync",
+      "source": "recipeservice_recipeservice",
+      "target": "recipeservice_recipeservice_getavailablerecipesasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "recipeservice_recipeservice_getrecipebyidasync",
+      "source": "recipeservice_recipeservice",
+      "target": "recipeservice_recipeservice_getrecipebyidasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "recipeservice_recipeservice_addrecipeasync",
+      "source": "recipeservice_recipeservice",
+      "target": "recipeservice_recipeservice_addrecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "recipeservice_recipeservice_updaterecipeasync",
+      "source": "recipeservice_recipeservice",
+      "target": "recipeservice_recipeservice_updaterecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L81",
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "recipeservice_recipeservice_deleterecipeasync",
+      "source": "recipeservice_recipeservice",
+      "target": "recipeservice_recipeservice_deleterecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs",
+      "source_location": "L93",
+      "weight": 1.0,
+      "_src": "recipeservice_recipeservice",
+      "_tgt": "recipeservice_recipeservice_cookrecipeasync",
+      "source": "recipeservice_recipeservice",
+      "target": "recipeservice_recipeservice_cookrecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "baseviewmodel",
+      "_tgt": "baseviewmodel_baseviewmodel",
+      "source": "baseviewmodel",
+      "target": "baseviewmodel_baseviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "homeviewmodel_homeviewmodel",
+      "_tgt": "baseviewmodel",
+      "source": "baseviewmodel",
+      "target": "homeviewmodel_homeviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "baseviewmodel",
+      "source": "baseviewmodel",
+      "target": "pantryviewmodel_pantryviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel_recipedetailviewmodel",
+      "_tgt": "baseviewmodel",
+      "source": "baseviewmodel",
+      "target": "recipedetailviewmodel_recipedetailviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "_tgt": "baseviewmodel",
+      "source": "baseviewmodel",
+      "target": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "_tgt": "baseviewmodel",
+      "source": "baseviewmodel",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "baseviewmodel_baseviewmodel",
+      "_tgt": "inotifypropertychanged",
+      "source": "baseviewmodel_baseviewmodel",
+      "target": "inotifypropertychanged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "baseviewmodel_baseviewmodel",
+      "_tgt": "baseviewmodel_baseviewmodel_onpropertychanged",
+      "source": "baseviewmodel_baseviewmodel",
+      "target": "baseviewmodel_baseviewmodel_onpropertychanged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_src": "baseviewmodel_baseviewmodel",
+      "_tgt": "baseviewmodel_baseviewmodel_setproperty",
+      "source": "baseviewmodel_baseviewmodel",
+      "target": "baseviewmodel_baseviewmodel_setproperty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_src": "baseviewmodel_baseviewmodel",
+      "_tgt": "baseviewmodel_baseviewmodel_executebusyasync",
+      "source": "baseviewmodel_baseviewmodel",
+      "target": "baseviewmodel_baseviewmodel_executebusyasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "homeviewmodel_homeviewmodel",
+      "_tgt": "baseviewmodel_baseviewmodel",
+      "source": "baseviewmodel_baseviewmodel",
+      "target": "homeviewmodel_homeviewmodel"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "baseviewmodel_baseviewmodel",
+      "source": "baseviewmodel_baseviewmodel",
+      "target": "pantryviewmodel_pantryviewmodel"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel_recipedetailviewmodel",
+      "_tgt": "baseviewmodel_baseviewmodel",
+      "source": "baseviewmodel_baseviewmodel",
+      "target": "recipedetailviewmodel_recipedetailviewmodel"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "_tgt": "baseviewmodel_baseviewmodel",
+      "source": "baseviewmodel_baseviewmodel",
+      "target": "recipeeditorviewmodel_recipeeditorviewmodel"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "_tgt": "baseviewmodel_baseviewmodel",
+      "source": "baseviewmodel_baseviewmodel",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_src": "baseviewmodel_baseviewmodel_setproperty",
+      "_tgt": "baseviewmodel_baseviewmodel_onpropertychanged",
+      "source": "baseviewmodel_baseviewmodel_onpropertychanged",
+      "target": "baseviewmodel_baseviewmodel_setproperty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "homeviewmodel",
+      "_tgt": "homeviewmodel_homeviewmodel",
+      "source": "homeviewmodel",
+      "target": "homeviewmodel_homeviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_src": "homeviewmodel_homeviewmodel",
+      "_tgt": "homeviewmodel_homeviewmodel_loadrecipesasync",
+      "source": "homeviewmodel_homeviewmodel",
+      "target": "homeviewmodel_homeviewmodel_loadrecipesasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "homeviewmodel_homeviewmodel",
+      "_tgt": "homeviewmodel_homeviewmodel_navigatetorecipeasync",
+      "source": "homeviewmodel_homeviewmodel",
+      "target": "homeviewmodel_homeviewmodel_navigatetorecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_src": "homeviewmodel_homeviewmodel",
+      "_tgt": "homeviewmodel_homeviewmodel_createrecipeasync",
+      "source": "homeviewmodel_homeviewmodel",
+      "target": "homeviewmodel_homeviewmodel_createrecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/HomeViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "homeviewmodel_homeviewmodel",
+      "_tgt": "relaycommand_relaycommand",
+      "source": "homeviewmodel_homeviewmodel",
+      "target": "relaycommand_relaycommand"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "pantryviewmodel",
+      "_tgt": "pantryviewmodel_pantryviewmodel",
+      "source": "pantryviewmodel",
+      "target": "pantryviewmodel_pantryviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "pantryviewmodel_pantryviewmodel_loadpantryitemsasync",
+      "source": "pantryviewmodel_pantryviewmodel",
+      "target": "pantryviewmodel_pantryviewmodel_loadpantryitemsasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "pantryviewmodel_pantryviewmodel_addpantryitemasync",
+      "source": "pantryviewmodel_pantryviewmodel",
+      "target": "pantryviewmodel_pantryviewmodel_addpantryitemasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": "L109",
+      "weight": 1.0,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "pantryviewmodel_pantryviewmodel_deletepantryitemasync",
+      "source": "pantryviewmodel_pantryviewmodel",
+      "target": "pantryviewmodel_pantryviewmodel_deletepantryitemasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "relaycommand_relaycommand",
+      "source": "pantryviewmodel_pantryviewmodel",
+      "target": "relaycommand_relaycommand"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "PantryToPlate.Core/ViewModels/PantryViewModel.cs",
+      "source_location": null,
+      "weight": 0.7,
+      "_src": "pantryviewmodel_pantryviewmodel",
+      "_tgt": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "source": "pantryviewmodel_pantryviewmodel",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel",
+      "_tgt": "recipedetailviewmodel_recipedetailviewmodel",
+      "source": "recipedetailviewmodel",
+      "target": "recipedetailviewmodel_recipedetailviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel_recipedetailviewmodel",
+      "_tgt": "recipedetailviewmodel_recipedetailviewmodel_loadrecipeasync",
+      "source": "recipedetailviewmodel_recipedetailviewmodel",
+      "target": "recipedetailviewmodel_recipedetailviewmodel_loadrecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel_recipedetailviewmodel",
+      "_tgt": "recipedetailviewmodel_recipedetailviewmodel_cookrecipeasync",
+      "source": "recipedetailviewmodel_recipedetailviewmodel",
+      "target": "recipedetailviewmodel_recipedetailviewmodel_cookrecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel_recipedetailviewmodel",
+      "_tgt": "recipedetailviewmodel_recipedetailviewmodel_deleterecipeasync",
+      "source": "recipedetailviewmodel_recipedetailviewmodel",
+      "target": "recipedetailviewmodel_recipedetailviewmodel_deleterecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeDetailViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipedetailviewmodel_recipedetailviewmodel",
+      "_tgt": "relaycommand_relaycommand",
+      "source": "recipedetailviewmodel_recipedetailviewmodel",
+      "target": "relaycommand_relaycommand"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "recipeeditorviewmodel",
+      "_tgt": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "source": "recipeeditorviewmodel",
+      "target": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_src": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "_tgt": "recipeeditorviewmodel_recipeeditorviewmodel_saverecipeasync",
+      "source": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "target": "recipeeditorviewmodel_recipeeditorviewmodel_saverecipeasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/RecipeEditorViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "_tgt": "relaycommand_relaycommand",
+      "source": "recipeeditorviewmodel_recipeeditorviewmodel",
+      "target": "relaycommand_relaycommand"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_src": "relaycommand",
+      "_tgt": "relaycommand_relaycommand",
+      "source": "relaycommand",
+      "target": "relaycommand_relaycommand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_src": "relaycommand_relaycommand",
+      "_tgt": "icommand",
+      "source": "relaycommand_relaycommand",
+      "target": "icommand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_src": "relaycommand_relaycommand",
+      "_tgt": "relaycommand_relaycommand_raisecanexecutechanged",
+      "source": "relaycommand_relaycommand",
+      "target": "relaycommand_relaycommand_raisecanexecutechanged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_src": "relaycommand_relaycommand",
+      "_tgt": "relaycommand_relaycommand_canexecute",
+      "source": "relaycommand_relaycommand",
+      "target": "relaycommand_relaycommand_canexecute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/RelayCommand.cs",
+      "source_location": "L53",
+      "weight": 1.0,
+      "_src": "relaycommand_relaycommand",
+      "_tgt": "relaycommand_relaycommand_execute",
+      "source": "relaycommand_relaycommand",
+      "target": "relaycommand_relaycommand_execute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "_tgt": "relaycommand_relaycommand",
+      "source": "relaycommand_relaycommand",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel",
+      "_tgt": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "source": "shoppinglistviewmodel",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "_tgt": "shoppinglistviewmodel_shoppinglistviewmodel_loadshoppinglistitemsasync",
+      "source": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel_loadshoppinglistitemsasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "_tgt": "shoppinglistviewmodel_shoppinglistviewmodel_togglepurchasedasync",
+      "source": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel_togglepurchasedasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "PantryToPlate.Core/ViewModels/ShoppingListViewModel.cs",
+      "source_location": "L69",
+      "weight": 1.0,
+      "_src": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "_tgt": "shoppinglistviewmodel_shoppinglistviewmodel_clearpurchasedasync",
+      "source": "shoppinglistviewmodel_shoppinglistviewmodel",
+      "target": "shoppinglistviewmodel_shoppinglistviewmodel_clearpurchasedasync",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "mvvm_pattern_viewmodels",
+      "label": "MVVM Pattern ViewModels",
+      "nodes": [
+        "baseviewmodel_baseviewmodel",
+        "relaycommand_relaycommand",
+        "homeviewmodel_homeviewmodel",
+        "recipedetailviewmodel_recipedetailviewmodel",
+        "recipeeditorviewmodel_recipeeditorviewmodel",
+        "pantryviewmodel_pantryviewmodel",
+        "shoppinglistviewmodel_shoppinglistviewmodel"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "PantryToPlate.Core/ViewModels/BaseViewModel.cs"
+    },
+    {
+      "id": "data_layer_ef_core",
+      "label": "EF Core Data Layer",
+      "nodes": [
+        "appdbcontext_appdbcontext",
+        "databaseseeder_databaseseeder",
+        "recipe_recipe",
+        "ingredient_ingredient",
+        "recipeingredient_recipeingredient",
+        "pantryitem_pantryitem",
+        "shoppinglistitem_shoppinglistitem"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "PantryToPlate.Core/Data/AppDbContext.cs"
+    },
+    {
+      "id": "recipe_availability_flow",
+      "label": "Recipe Availability Flow",
+      "nodes": [
+        "recipeservice_recipeservice",
+        "pantryitem_pantryitem",
+        "recipeingredient_recipeingredient",
+        "recipe_recipe"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "PantryToPlate.Core/Services/RecipeService.cs"
+    }
+  ]
+}

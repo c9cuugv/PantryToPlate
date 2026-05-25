@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using PantryToPlate.Core.Models;
 
 namespace PantryToPlate.Core.Data;
@@ -11,16 +12,19 @@ public class AppDbContext : DbContext
     public DbSet<PantryItem> Pantry { get; set; }
     public DbSet<ShoppingListItem> ShoppingList { get; set; }
 
-    private readonly string _dbPath;
-
-    public AppDbContext(string dbPath)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
-        _dbPath = dbPath;
+        System.Diagnostics.Debug.WriteLine("=== AppDbContext CLASS LOADED (v2-fix) ===");
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite($"Filename={_dbPath}");
+        if (!optionsBuilder.IsConfigured)
+        {
+            // Default path if not configured by DI (e.g. CLI tools)
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "pantry.db");
+            optionsBuilder.UseSqlite($"Filename={dbPath}");
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

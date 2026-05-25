@@ -1,18 +1,20 @@
-namespace PantryToPlate;
+using PantryToPlate.Core.ViewModels;
+namespace PantryToPlate.Views;
 
 [QueryProperty(nameof(RecipeId), "recipeId")]
 public partial class RecipeDetailPage : ContentPage
 {
-    public RecipeDetailPage()
+    public RecipeDetailPage(RecipeDetailViewModel viewModel)
     {
         InitializeComponent();
+        BindingContext = viewModel;
     }
 
     public string RecipeId
     {
         set
         {
-            if (int.TryParse(value, out var id) && BindingContext is ViewModels.RecipeDetailViewModel vm)
+            if (int.TryParse(value, out var id) && BindingContext is RecipeDetailViewModel vm)
             {
                 _ = vm.LoadRecipeAsync(id);
             }

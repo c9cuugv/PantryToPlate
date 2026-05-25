@@ -1,9 +1,12 @@
-namespace PantryToPlate;
+using PantryToPlate.Core.ViewModels;
+
+namespace PantryToPlate.Views;
 
 public partial class RecipeEditorPage : ContentPage
 {
-    public RecipeEditorPage()
+    public RecipeEditorPage(RecipeEditorViewModel viewModel)
     {
         InitializeComponent();
+        BindingContext = viewModel;
     }
 }

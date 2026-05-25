@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PantryToPlate"
+    xmlns:views="clr-namespace:PantryToPlate.Views"
     Title="PantryToPlate">
 
     <TabBar>
@@ -16,13 +17,13 @@
         <Tab Title="Pantry" Icon="pantry.png">
             <ShellContent
                 Title="Pantry"
-                ContentTemplate="{DataTemplate local:PantryPage}"
+                ContentTemplate="{DataTemplate views:PantryPage}"
                 Route="PantryPage" />
         </Tab>
         <Tab Title="Shopping List" Icon="shopping.png">
             <ShellContent
                 Title="Shopping List"
-                ContentTemplate="{DataTemplate local:ShoppingListPage}"
+                ContentTemplate="{DataTemplate views:ShoppingListPage}"
                 Route="ShoppingListPage" />
         </Tab>
     </TabBar>

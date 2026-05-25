@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using PantryToPlate.Core;
 using PantryToPlate.Core.Data;
 using PantryToPlate.Core.Services;
-using PantryToPlate.ViewModels;
+using PantryToPlate.Core.ViewModels;
+using PantryToPlate.Services;
 using PantryToPlate.Converters;
+using PantryToPlate.Views;
 
 namespace PantryToPlate;
 
@@ -21,7 +24,7 @@ public static class MauiProgram
 			});
 
 #if DEBUG
-		builder.Logging.AddDebug();
+		// builder.Logging.AddDebug();
 #endif
 
 		// Register DbContext
@@ -30,7 +33,10 @@ public static class MauiProgram
 			options.UseSqlite($"Data Source={dbPath}"));
 
 		// Register Services
-		builder.Services.AddSingleton<IRecipeService, RecipeService>();
+		builder.Services.AddScoped<IRecipeService, RecipeService>();
+		builder.Services.AddScoped<IRecipeImportService, RecipeImportService>();
+		builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
+		builder.Services.AddSingleton<TestService>();
 
 		// Register ViewModels
 		builder.Services.AddTransient<HomeViewModel>();
@@ -38,6 +44,13 @@ public static class MauiProgram
 		builder.Services.AddTransient<RecipeEditorViewModel>();
 		builder.Services.AddTransient<PantryViewModel>();
 		builder.Services.AddTransient<ShoppingListViewModel>();
+
+		// Register Pages
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<PantryPage>();
+		builder.Services.AddTransient<RecipeDetailPage>();
+		builder.Services.AddTransient<RecipeEditorPage>();
+		builder.Services.AddTransient<ShoppingListPage>();
 
 		// Register Converters
 		builder.Services.AddSingleton<BoolToCheckIconConverter>();
@@ -50,6 +63,9 @@ public static class MauiProgram
 		// Initialize and seed database
 		using (var scope = app.Services.CreateScope())
 		{
+			var test = scope.ServiceProvider.GetService<TestService>();
+			System.Diagnostics.Debug.WriteLine($"=== ASSEMBLY VERSION CHECK: {test?.Message ?? "FAILED"} ===");
+			
 			var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 			db.Database.EnsureCreated();
 			DatabaseSeeder.SeedAsync(db).Wait();

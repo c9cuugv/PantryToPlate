@@ -1,7 +1,8 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<?xml version = "1.0" encoding = "UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PantryToPlate"
+             xmlns:converters="clr-namespace:PantryToPlate.Converters"
              x:Class="PantryToPlate.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -9,6 +10,11 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converters:IngredientsToSummaryConverter x:Key="IngredientsToSummaryConverter" />
+            <converters:BoolToCheckIconConverter x:Key="BoolToCheckIconConverter" />
+            <converters:BoolToStrikethroughConverter x:Key="BoolToStrikethroughConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

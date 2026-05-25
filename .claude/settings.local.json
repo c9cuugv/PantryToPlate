@@ -1,29 +1,17 @@
 {
   "permissions": {
     "allow": [
+      "Bash(dotnet build*)",
+      "Bash(dotnet test*)",
+      "Bash(dotnet restore*)",
       "Bash(dotnet new:*)",
       "Bash(dotnet workload:*)",
       "Bash(dotnet --version)",
       "Bash(dotnet add:*)",
-      "Bash(dotnet sln:*)"
+      "Bash(dotnet sln:*)",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)"
     ]
-  },
-  "assistantPreferences": {
-    "responseStyle": "concise",
-    "format": "markdown",
-    "bulletPointDensity": "medium",
-    "language": "en-US",
-    "codePolicy": {
-      "provideOnlyWorkingCode": true,
-      "minimizeSideEffects": true,
-      "includeLineComments": true
-    },
-    "taskLog": true,
-    "projectChecklist": true
-  },
-  "providedContext": {
-    "project": "PantryToPlate",
-    "architecture": "MAUI + Core library + xUnit tests",
-    "workflow": "edit PROGRESS.md after each task, add ViewModels/Views/Converters, run dotnet test, update status"
   }
 }

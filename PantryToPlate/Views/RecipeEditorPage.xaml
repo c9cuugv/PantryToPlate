@@ -1,28 +1,61 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:PantryToPlate.ViewModels"
-             x:Class="PantryToPlate.RecipeEditorPage"
+             xmlns:viewmodels="clr-namespace:PantryToPlate.Core.ViewModels;assembly=PantryToPlate.Core"
+             x:Class="PantryToPlate.Views.RecipeEditorPage"
              Title="Add Recipe">
 
-    <ContentPage.BindingContext>
-        <viewmodels:RecipeEditorViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
-        <StackLayout Padding="20" Spacing="12">
-            <Label Text="Create New Recipe" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="16">
+                <!-- Import Section -->
+                <Frame BorderColor="LightGray" CornerRadius="8" Padding="15" HasShadow="True">
+                    <StackLayout Spacing="10">
+                        <Label Text="Import Recipe from URL" FontSize="18" FontAttributes="Bold" />
+                        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                            <Entry Grid.Column="0" Placeholder="https://..." Text="{Binding ImportUrl}" />
+                            <Button Grid.Column="1" Text="Load" Command="{Binding LoadRecipeFromUrlCommand}" />
+                        </Grid>
+                        <ActivityIndicator IsRunning="{Binding IsLoadingRecipe}" IsVisible="{Binding IsLoadingRecipe}" HorizontalOptions="Center" />
+                        <Label Text="{Binding ImportError}" TextColor="Red" IsVisible="{Binding HasImportError}" />
+                    </StackLayout>
+                </Frame>
 
-            <Entry Placeholder="Recipe Name" Text="{Binding RecipeName}" />
-            <Editor Placeholder="Instructions" HeightRequest="120" Text="{Binding Instructions}" />
+                <!-- Basic Info -->
+                <Label Text="Recipe Details" FontSize="18" FontAttributes="Bold" />
+                <Entry Placeholder="Recipe Name" Text="{Binding RecipeName}" />
+                <Editor Placeholder="Instructions" HeightRequest="120" Text="{Binding Instructions}" />
 
-            <Button Text="Save Recipe"
-                    Command="{Binding SaveRecipeCommand}"
-                    IsEnabled="{Binding IsSaving, Converter={StaticResource InverseBoolConverter}}"
-                    BackgroundColor="Blue"
-                    TextColor="White" />
+                <!-- Ingredients Review -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text="Review Ingredients" FontSize="18" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                    <Button Text="+ Add Row" Command="{Binding AddIngredientRowCommand}" Padding="5,0" HeightRequest="35" VerticalOptions="Center" />
+                </StackLayout>
 
-            <ActivityIndicator IsRunning="{Binding IsSaving}" IsVisible="{Binding IsSaving}" />
-        </StackLayout>
+                <CollectionView ItemsSource="{Binding ParsedIngredients}" HeightRequest="250">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="Auto, 2*, *, *, Auto" ColumnSpacing="5" Padding="0,5" VerticalOptions="Center">
+                                <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}" VerticalOptions="Center" />
+                                <Entry Grid.Column="1" Placeholder="Name" Text="{Binding Name}" VerticalOptions="Center" />
+                                <Entry Grid.Column="2" Placeholder="Qty" Text="{Binding Quantity}" Keyboard="Numeric" VerticalOptions="Center" />
+                                <Entry Grid.Column="3" Placeholder="Unit" Text="{Binding Unit}" VerticalOptions="Center" />
+                                <Button Grid.Column="4" Text="X" Command="{Binding BindingContext.RemoveIngredientRowCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" BackgroundColor="Red" TextColor="White" Padding="5,0" WidthRequest="35" HeightRequest="35" VerticalOptions="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Save Section -->
+                <Button Text="Save Recipe"
+                        Command="{Binding SaveRecipeCommand}"
+                        IsEnabled="{Binding IsSaving, Converter={StaticResource InverseBoolConverter}}"
+                        BackgroundColor="Blue"
+                        TextColor="White"
+                        Margin="0,20,0,0" />
+
+                <ActivityIndicator IsRunning="{Binding IsSaving}" IsVisible="{Binding IsSaving}" HorizontalOptions="Center" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

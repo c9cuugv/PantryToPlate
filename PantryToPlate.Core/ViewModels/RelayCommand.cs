@@ -21,7 +21,11 @@ public class RelayCommand : ICommand
     public event EventHandler? CanExecuteChanged;
     public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     public bool CanExecute(object? parameter) => _canExecute?.Invoke() ?? true;
-    public async void Execute(object? parameter) => await _execute();
+    public async void Execute(object? parameter)
+    {
+        try { await _execute(); }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[RelayCommand] Execute failed: {ex}"); }
+    }
 }
 
 public class RelayCommand<T> : ICommand
@@ -40,6 +44,18 @@ public class RelayCommand<T> : ICommand
 
     public event EventHandler? CanExecuteChanged;
     public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-    public bool CanExecute(object? parameter) => _canExecute?.Invoke((T)parameter!) ?? true;
-    public async void Execute(object? parameter) => await _execute((T)parameter!);
+    public bool CanExecute(object? parameter)
+    {
+        if (_canExecute is null) return true;
+        return parameter is T typed && _canExecute(typed);
+    }
+
+    public async void Execute(object? parameter)
+    {
+        if (parameter is T typed)
+        {
+            try { await _execute(typed); }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[RelayCommand<T>] Execute failed: {ex}"); }
+        }
+    }
 }

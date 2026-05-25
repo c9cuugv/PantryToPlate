@@ -1,4 +1,4 @@
-﻿using PantryToPlate.ViewModels;
+using PantryToPlate.Core.ViewModels;
 
 namespace PantryToPlate;
 
@@ -6,9 +6,10 @@ public partial class MainPage : ContentPage
 {
     private HomeViewModel ViewModel => (HomeViewModel)BindingContext;
 
-    public MainPage()
+    public MainPage(HomeViewModel viewModel)
     {
         InitializeComponent();
+        BindingContext = viewModel;
     }
 
     protected override async void OnAppearing()

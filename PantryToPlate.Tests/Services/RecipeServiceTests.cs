@@ -13,7 +13,10 @@ public class RecipeServiceTests : IDisposable
     public RecipeServiceTests()
     {
         var dbPath = Path.Combine(Path.GetTempPath(), $"test_{Guid.NewGuid()}.db");
-        _db = new AppDbContext(dbPath);
+        var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseSqlite($"Filename={dbPath}")
+            .Options;
+        _db = new AppDbContext(options);
         _db.Database.EnsureCreated();
         _sut = new RecipeService(_db);
     }
@@ -208,5 +211,59 @@ public class RecipeServiceTests : IDisposable
         Assert.Equal("New instructions", dbRecipe.Instructions);
         Assert.Single(dbRecipe.RequiredIngredients);
         Assert.Equal(1, dbRecipe.RequiredIngredients[0].QuantityRequired);
+    }
+
+    [Fact]
+    public async Task GetAvailableRecipes_HandlesUnitConversion_LbToGrams()
+    {
+        await SeedBasicDataAsync();
+        var tomato = _db.Ingredients.Single(i => i.Name == "Tomato");
+        var pasta  = _db.Ingredients.Single(i => i.Name == "Pasta");
+        
+        // Tomato needs 2 whole, Pasta needs 100 grams
+        _db.Pantry.Add(new PantryItem { Ingredient = tomato, QuantityInStock = 2, Unit = "unit" }); // Count compatibility
+        
+        // 1. First test: sufficient pasta (1 lb = ~454g >= 100g)
+        var pastaItem = new PantryItem { Ingredient = pasta, QuantityInStock = 1, Unit = "lb" };
+        _db.Pantry.Add(pastaItem);
+        await _db.SaveChangesAsync();
+
+        var result = await _sut.GetAvailableRecipesAsync();
+        Assert.Single(result);
+
+        // 2. Second test: insufficient pasta (0.1 lb = ~45.4g < 100g)
+        pastaItem.QuantityInStock = 0.1m;
+        await _db.SaveChangesAsync();
+
+        result = await _sut.GetAvailableRecipesAsync();
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public async Task CookRecipeAsync_DeductsWithUnitConversion_AndRemovesDepletedPantryItem()
+    {
+        await SeedBasicDataAsync();
+        var tomato = _db.Ingredients.Single(i => i.Name == "Tomato");
+        var pasta  = _db.Ingredients.Single(i => i.Name == "Pasta");
+
+        // Tomato recipe needs 2 whole, Pasta needs 100 grams
+        // 1 lb of pasta = ~453.59g. Deduction of 100g should leave ~353.59g in lbs, which is ~0.7796 lbs.
+        var tomatoItem = new PantryItem { Ingredient = tomato, QuantityInStock = 2, Unit = "unit" };
+        var pastaItem  = new PantryItem { Ingredient = pasta, QuantityInStock = 1, Unit = "lb" };
+        _db.Pantry.AddRange(tomatoItem, pastaItem);
+        await _db.SaveChangesAsync();
+
+        var recipe = _db.Recipes.First();
+        await _sut.CookRecipeAsync(recipe.Id);
+
+        // Tomato was exact match (2 unit vs 2 whole), so it should be completely removed from pantry
+        var dbTomato = await _db.Pantry.FirstOrDefaultAsync(p => p.IngredientId == tomato.Id);
+        Assert.Null(dbTomato);
+
+        // Pasta should be reduced from 1 lb to ~0.7796 lbs
+        var dbPasta = await _db.Pantry.FirstOrDefaultAsync(p => p.IngredientId == pasta.Id);
+        Assert.NotNull(dbPasta);
+        Assert.True(dbPasta!.QuantityInStock < 1.0m);
+        Assert.True(dbPasta.QuantityInStock > 0.77m);
     }
 }

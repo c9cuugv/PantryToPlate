@@ -1,21 +1,26 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using PantryToPlate.Core.Services;
 using Microsoft.EntityFrameworkCore;
 using PantryToPlate.Core.Data;
 using PantryToPlate.Core.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
-namespace PantryToPlate.ViewModels;
+namespace PantryToPlate.Core.ViewModels;
 
-public partial class ShoppingListViewModel : ObservableObject
+public partial class ShoppingListViewModel : BaseViewModel
 {
     private readonly AppDbContext _dbContext;
 
-    [ObservableProperty]
     private ObservableCollection<ShoppingListItem> shoppingListItems = new();
+    public ObservableCollection<ShoppingListItem> ShoppingListItems { get => shoppingListItems; set => SetProperty(ref shoppingListItems, value); }
 
-    [ObservableProperty]
     private bool isLoading;
+    public bool IsLoading { get => isLoading; set => SetProperty(ref isLoading, value); }
+
+    public ShoppingListViewModel()
+    {
+        _dbContext = null!;
+    }
 
     public ShoppingListViewModel(AppDbContext dbContext)
     {
@@ -29,7 +34,7 @@ public partial class ShoppingListViewModel : ObservableObject
         IsLoading = true;
         try
         {
-            var items = await Task.Run(() => _dbContext.ShoppingListItems
+            var items = await Task.Run(() => _dbContext.ShoppingList
                 .Include(s => s.Ingredient)
                 .ToList());
 
@@ -45,13 +50,13 @@ public partial class ShoppingListViewModel : ObservableObject
         }
     }
 
-    [RelayCommand]
-    private async Task TogglePurchasedAsync(ShoppingListItem item)
+    public ICommand TogglePurchasedCommand => new RelayCommand<ShoppingListItem>(async (item) => await TogglePurchasedAsync(item));
+    public async Task TogglePurchasedAsync(ShoppingListItem item)
     {
         try
         {
             item.IsPurchased = !item.IsPurchased;
-            _dbContext.ShoppingListItems.Update(item);
+            _dbContext.ShoppingList.Update(item);
             await _dbContext.SaveChangesAsync();
         }
         catch (Exception ex)
@@ -60,13 +65,13 @@ public partial class ShoppingListViewModel : ObservableObject
         }
     }
 
-    [RelayCommand]
-    private async Task ClearPurchasedAsync()
+    public ICommand ClearPurchasedCommand => new RelayCommand(async () => await ClearPurchasedAsync());
+    public async Task ClearPurchasedAsync()
     {
         try
         {
             var purchasedItems = ShoppingListItems.Where(i => i.IsPurchased).ToList();
-            _dbContext.ShoppingListItems.RemoveRange(purchasedItems);
+            _dbContext.ShoppingList.RemoveRange(purchasedItems);
             await _dbContext.SaveChangesAsync();
 
             foreach (var item in purchasedItems)
