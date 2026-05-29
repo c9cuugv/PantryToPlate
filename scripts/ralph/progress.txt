@@ -17,3 +17,15 @@ Started: Sun May 24 18:47:01 MST 2026
   - MAUI builds targeting Android are slow (~6-7 min on first build). Use `--no-restore -v:minimal` for faster iteration after initial restore.
   - Pre-existing XA0141 warnings about SQLitePCLRaw page size are unrelated to UI changes and can be safely ignored.
 ---
+
+## Thu May 28 23:55:00 MST 2026 - US-002
+- MainPage.xaml: Frame recipe card uses BaseCard style; labels use AppThemeBinding Gray600/Gray300 for text
+- PantryPage.xaml: Add Ingredient form uses Secondary/Gray600; Add button uses BaseButton; delete SwipeItem uses Red/Magenta; item Frame uses BaseCard; error label added
+- PantryViewModel.cs: Added ErrorMessage property with HasError; per-field validation messages instead of silent return
+- **Learnings for future iterations:**
+  - Frame elements accept `Style="{StaticResource BaseCard}"` to replace duplicated CornerRadius/Padding/Margin/BackgroundColor attributes
+  - Button elements accept `Style="{StaticResource BaseButton}"` to replace BackgroundColor/TextColor/BorderWidth/CornerRadius/FontSize
+  - For individual theme-aware colors like TextColor, use inline `{AppThemeBinding Light={StaticResource X}, Dark={StaticResource Y}}` — this is the proven working pattern
+  - InverseBoolConverter only works with bool inputs. For conditional visibility of string-based properties, add a HasError/IsVisible computed property in the ViewModel
+  - PantryViewModel already validates inputs — added ErrorMessage for user feedback
+---

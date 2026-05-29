@@ -29,8 +29,8 @@
         "dotnet test PantryToPlate.Tests/ passes"
       ],
       "priority": 2,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Colors replaced with AppThemeBinding inline or BaseCard/BaseButton styles instead of DynamicResource. Validation: added ErrorMessage/HasError properties with per-field feedback. Existing validation (NewQuantity<=0) already present."
     },
     {
       "id": "US-003",
