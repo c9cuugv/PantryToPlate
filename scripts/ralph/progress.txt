@@ -1,0 +1,19 @@
+# Ralph Progress Log
+Started: Sun May 24 18:47:01 MST 2026
+
+## Codebase Patterns
+- AppThemeBinding markup extension cannot be used as `<Color>` element content in ResourceDictionary (XamlC XC0040). Must use inline in `Setter Value="{AppThemeBinding Light=..., Dark=...}"` instead.
+- MAUI XAML Color resources can only hold static color values (hex, named colors). Theme-aware colors go in Style setters.
+- Static base colors (White, Black, Gray100..Gray950, Primary/Dark) go in Colors.xaml. Themed styles go in Styles.xaml.
+---
+
+## Thu May 28 23:45:00 MST 2026 - US-001
+- Added Red color token to Colors.xaml (#FF0000)
+- Added BaseCard (Frame) and BaseButton (Button) keyed styles to Styles.xaml with full AppThemeBinding Light/Dark pairs
+- BaseButton includes VisualState for Disabled state with dimmed colors
+- **Learnings for future iterations:**
+  - XamlC error XC0040: MAUI XAML compiler cannot convert AppThemeBinding markup extension to Color when used as element content inside `<Color>` tags. This is a fundamental limitation — AppThemeBinding only works in property syntax (`Value="{AppThemeBinding ...}"`).
+  - DynamicResource references to semantic color keys silently produce null if the keys don't exist in ResourceDictionary. Always verify DynamicResource keys actually resolve at build or test time.
+  - MAUI builds targeting Android are slow (~6-7 min on first build). Use `--no-restore -v:minimal` for faster iteration after initial restore.
+  - Pre-existing XA0141 warnings about SQLitePCLRaw page size are unrelated to UI changes and can be safely ignored.
+---

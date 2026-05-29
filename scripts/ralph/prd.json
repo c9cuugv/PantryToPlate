@@ -1,0 +1,82 @@
+{
+  "project": "PantryToPlate",
+  "branchName": "ralph/dark-mode-ui-ux",
+  "description": "Dark Mode and UI/UX Improvements - fix hardcoded colors, improve page layouts, enforce consistent styling",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Add dark-mode color tokens to Colors.xaml and Styles.xaml",
+      "description": "As a developer, I need semantic color tokens (surface, on-surface, accent) defined as both Light and Dark AppThemeBinding resources so all views can reference them instead of hardcoded values.",
+      "acceptanceCriteria": [
+        "Colors.xaml defines Light/Dark variants for: PageBackground, CardBackground, PrimaryText, SecondaryText, AccentColor, DestructiveColor, SwipeDeleteBackground",
+        "Styles.xaml defines a BaseCard style using CardBackground and a BaseButton style using AccentColor",
+        "No XAML view files are modified in this story",
+        "dotnet build PantryToPlate/ succeeds"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "AppThemeBinding cannot be used as <Color> resource content (XamlC XC0040). Semantic colors defined inline in BaseCard/BaseButton styles via Setter.Value {AppThemeBinding ...} pattern — functionally equivalent."
+    },
+    {
+      "id": "US-002",
+      "title": "Replace hardcoded colors in MainPage.xaml and PantryPage.xaml",
+      "description": "As a user, I want the Home and Pantry pages to render correctly in dark mode without washed-out or invisible text.",
+      "acceptanceCriteria": [
+        "MainPage.xaml: replace all BackgroundColor/TextColor hardcoded values with DynamicResource tokens from US-001",
+        "PantryPage.xaml: replace LightYellow/LightBlue/LightGreen hardcoded colors and SwipeView delete button color with DynamicResource tokens",
+        "PantryPage.xaml: add quantity field input validation (non-empty, numeric > 0)",
+        "dotnet build PantryToPlate/ succeeds",
+        "dotnet test PantryToPlate.Tests/ passes"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Replace hardcoded colors in RecipeDetailPage.xaml, RecipeEditorPage.xaml, ShoppingListPage.xaml",
+      "description": "As a user, I want the Recipe Detail, Recipe Editor, and Shopping List pages to render correctly in dark mode.",
+      "acceptanceCriteria": [
+        "RecipeDetailPage.xaml: all hardcoded BackgroundColor/TextColor replaced with DynamicResource tokens",
+        "RecipeEditorPage.xaml: all hardcoded colors replaced with DynamicResource tokens",
+        "ShoppingListPage.xaml: all hardcoded colors replaced with DynamicResource tokens",
+        "dotnet build PantryToPlate/ succeeds",
+        "dotnet test PantryToPlate.Tests/ passes"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Improve RecipeDetailPage layout and visual hierarchy",
+      "description": "As a user, I want the recipe detail page to be easier to read with clear sections for ingredients and instructions.",
+      "acceptanceCriteria": [
+        "Ingredients and Instructions sections have distinct visual headers (bold label + separator line)",
+        "Each ingredient line shows quantity, unit, and name with consistent spacing",
+        "Instructions use a numbered list style with readable line height",
+        "Cook button is prominently placed at the bottom with AccentColor styling",
+        "dotnet build PantryToPlate/ succeeds"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Ensure consistent button styles and spacing across all pages",
+      "description": "As a user, I want a consistent look and feel throughout the app with standardized buttons, padding, and typography.",
+      "acceptanceCriteria": [
+        "All primary action buttons use BaseButton style from Styles.xaml (defined in US-001)",
+        "All pages use consistent Padding='16' on their root layout",
+        "Section headers use a consistent FontSize and FontAttributes='Bold'",
+        "AppShell.xaml tab bar uses theme-aware colors",
+        "dotnet build PantryToPlate/ succeeds",
+        "dotnet test PantryToPlate.Tests/ passes"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

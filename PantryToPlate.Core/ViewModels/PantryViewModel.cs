@@ -33,6 +33,19 @@ public partial class PantryViewModel : BaseViewModel
     private string newUnit = string.Empty;
     public string NewUnit { get => newUnit; set => SetProperty(ref newUnit, value); }
 
+    private string errorMessage = string.Empty;
+    public string ErrorMessage
+    {
+        get => errorMessage;
+        set
+        {
+            if (SetProperty(ref errorMessage, value))
+                OnPropertyChanged(nameof(HasError));
+        }
+    }
+
+    public bool HasError => !string.IsNullOrEmpty(ErrorMessage);
+
     private bool isLoading;
     public bool IsLoading { get => isLoading; set => SetProperty(ref isLoading, value); }
 
@@ -72,10 +85,25 @@ public partial class PantryViewModel : BaseViewModel
     public ICommand AddPantryItemCommand => new RelayCommand(async () => await AddPantryItemAsync());
     public async Task AddPantryItemAsync()
     {
-        if (string.IsNullOrWhiteSpace(NewIngredientName) ||
-            NewQuantity <= 0 ||
-            string.IsNullOrWhiteSpace(NewUnit))
+        ErrorMessage = string.Empty;
+
+        if (string.IsNullOrWhiteSpace(NewIngredientName))
+        {
+            ErrorMessage = "Ingredient name is required.";
             return;
+        }
+
+        if (NewQuantity <= 0)
+        {
+            ErrorMessage = "Quantity must be greater than 0.";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(NewUnit))
+        {
+            ErrorMessage = "Unit is required.";
+            return;
+        }
 
         try
         {

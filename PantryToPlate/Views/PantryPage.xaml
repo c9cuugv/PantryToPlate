@@ -14,7 +14,7 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-            <Frame CornerRadius="10" Padding="15" BackgroundColor="LightYellow">
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Gray600}}">
                 <StackLayout Spacing="10">
                     <Label Text="Add Ingredient" FontSize="18" FontAttributes="Bold" />
 
@@ -30,8 +30,13 @@
 
                     <Button Text="Add to Pantry"
                             Command="{Binding AddPantryItemCommand}"
-                            BackgroundColor="Green"
-                            TextColor="White" />
+                            Style="{StaticResource BaseButton}" />
+
+                    <Label Text="{Binding ErrorMessage}"
+                           TextColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}"
+                           FontSize="12"
+                           HorizontalOptions="Center"
+                           IsVisible="{Binding HasError}" />
                 </StackLayout>
             </Frame>
 
@@ -42,16 +47,13 @@
                             <SwipeView.LeftItems>
                                 <SwipeItems Mode="Execute">
                                     <SwipeItem Text="Delete"
-                                             BackgroundColor="Red"
+                                             BackgroundColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}"
                                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PantryViewModel}}, Path=DeletePantryItemCommand}"
                                              CommandParameter="{Binding .}" />
                                 </SwipeItems>
                             </SwipeView.LeftItems>
 
-                            <Frame CornerRadius="10"
-                                   Padding="15"
-                                   Margin="5"
-                                   BackgroundColor="LightGray">
+                            <Frame Style="{StaticResource BaseCard}">
                                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
                                     <Label Text="{Binding Ingredient.Name}"
                                            FontSize="16"
@@ -70,7 +72,7 @@
             <Label Text="No items in pantry yet!"
                    IsVisible="{Binding PantryItems, Converter={StaticResource InverseBoolConverter}}"
                    HorizontalOptions="Center"
-                   TextColor="Gray" />
+                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
         </StackLayout>
     </ContentPage.Content>
 

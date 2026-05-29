@@ -31,27 +31,24 @@
                            SelectionChanged="OnRecipeSelected">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame CornerRadius="10"
-                               Padding="15"
-                               Margin="5"
-                               BackgroundColor="LightGray">
+                        <Frame Style="{StaticResource BaseCard}">
                             <StackLayout>
                                 <Label Text="{Binding Name}"
                                        FontSize="18"
                                        FontAttributes="Bold" />
                                 <Label Text="{Binding RequiredIngredients, Converter={StaticResource IngredientsToSummaryConverter}}"
-                                       FontSize="14"
-                                       TextColor="Gray" />
+                                        FontSize="14"
+                                        TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
                             </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="No recipes available. Add some ingredients to your pantry!"
-                   IsVisible="{Binding Recipes, Converter={StaticResource InverseBoolConverter}}"
+            <Label Text="No recipes available. Add ingredients to your pantry or add a new recipe!"
+                   IsVisible="{Binding HasRecipes, Converter={StaticResource InverseBoolConverter}}"
                    HorizontalOptions="Center"
-                   TextColor="Gray" />
+                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
         </StackLayout>
     </ContentPage.Content>
 
