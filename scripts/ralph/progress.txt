@@ -29,3 +29,35 @@ Started: Sun May 24 18:47:01 MST 2026
   - InverseBoolConverter only works with bool inputs. For conditional visibility of string-based properties, add a HasError/IsVisible computed property in the ViewModel
   - PantryViewModel already validates inputs — added ErrorMessage for user feedback
 ---
+
+## Thu May 29 00:05:00 MST 2026 - US-003
+- RecipeDetailPage: Frames use BaseCard; Cook/Delete buttons themed (BaseButton/destructive)
+- RecipeEditorPage: Import Frame border themed; error label uses Red/Magenta; remove row uses Red/Magenta; Save uses BaseButton; status uses Primary/PrimaryDark
+- ShoppingListPage: Load button uses BaseButton; item Frame uses BaseCard; Clear uses Red/Magenta; empty label uses Gray600/Gray300
+- **Learnings for future iterations:**
+  - Destructive/delete buttons intentionally kept outside BaseButton — they use Red/Magenta AppThemeBinding directly to signal danger
+  - Save status labels use Primary/PrimaryDark for success feedback instead of DarkGreen (which has no dark-mode variant)
+---
+
+## Thu May 29 00:10:00 MST 2026 - US-004
+- Added InstructionSteps (ObservableCollection<string>) to RecipeDetailViewModel — splits Instructions by newlines, numbers each step
+- Added BoxView separators below section headers for visual hierarchy
+- Ingredient rows use consistent spacing with VerticalOptions="Center"
+- Instructions render as numbered list with LineHeight=1.5 for readability
+- **Learnings for future iterations:**
+  - To convert a single multiline string to a numbered list in MAUI, use a computed property that splits on '\n' and uses Select with index to prefix "N. "
+  - ObservableCollection<string> works directly with CollectionView ItemTemplate via {Binding .}
+  - BoxView with HeightRequest=1 works as a section separator when colored with AppThemeBinding
+---
+
+## Thu May 29 00:15:00 MST 2026 - US-005
+- All primary buttons use BaseButton (Load Recipes, Add Recipe, Load, Add Row, Save, Add to Pantry, Load Shopping List, Cook)
+- All pages use consistent Padding=16 on root StackLayout
+- AppShell.xaml confirmed already themed via Shell implicit style
+- **Learnings for future iterations:**
+  - Section headers were already consistent (FontSize 24 for page titles, 18 for section headers, Bold everywhere)
+  - Padding consistency is verified by checking each ContentPage's root StackLayout
+  - Shell styling in Styles.xaml affects tab bar automatically — no per-page configuration needed
+---
+
+

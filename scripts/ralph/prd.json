@@ -44,8 +44,8 @@
         "dotnet test PantryToPlate.Tests/ passes"
       ],
       "priority": 3,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Colors replaced with AppThemeBinding inline or BaseCard/BaseButton styles. DynamicResource not used — XAML compiler limitation."
     },
     {
       "id": "US-004",
@@ -59,8 +59,8 @@
         "dotnet build PantryToPlate/ succeeds"
       ],
       "priority": 4,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "Added InstructionSteps computed property to ViewModel. BoxView separators below headers. Numbered instructions (N. ...). Cook button prominent with BaseButton + margin."
     },
     {
       "id": "US-005",
@@ -75,8 +75,8 @@
         "dotnet test PantryToPlate.Tests/ passes"
       ],
       "priority": 5,
-      "passes": false,
-      "notes": ""
+      "passes": true,
+      "notes": "All primary buttons use BaseButton. All pages use Padding=16. AppShell already themed by Shell implicit style. Section headers already consistent."
     }
   ]
 }
