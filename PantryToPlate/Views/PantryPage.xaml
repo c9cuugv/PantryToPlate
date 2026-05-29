@@ -8,7 +8,7 @@
 
 
     <ContentPage.Content>
-        <StackLayout Padding="20" Spacing="15">
+        <StackLayout Padding="16" Spacing="15">
             <Label Text="My Pantry"
                    FontSize="24"
                    FontAttributes="Bold"

@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using PantryToPlate.Core.Models;
 using PantryToPlate.Core.Services;
@@ -9,7 +10,33 @@ public partial class RecipeDetailViewModel : BaseViewModel
     private readonly IRecipeService _recipeService;
 
     private Recipe? recipe;
-    public Recipe? Recipe { get => recipe; set => SetProperty(ref recipe, value); }
+    public Recipe? Recipe
+    {
+        get => recipe;
+        set
+        {
+            if (SetProperty(ref recipe, value))
+                BuildInstructionSteps();
+        }
+    }
+
+    public ObservableCollection<string> InstructionSteps { get; } = new();
+
+    private void BuildInstructionSteps()
+    {
+        InstructionSteps.Clear();
+        if (Recipe is null || string.IsNullOrWhiteSpace(Recipe.Instructions))
+            return;
+
+        var steps = Recipe.Instructions
+            .Split('\n', StringSplitOptions.RemoveEmptyEntries)
+            .Select(s => s.Trim())
+            .Where(s => s.Length > 0)
+            .Select((text, index) => $"{index + 1}. {text}");
+
+        foreach (var step in steps)
+            InstructionSteps.Add(step);
+    }
 
     private bool isLoading;
     public bool IsLoading { get => isLoading; set => SetProperty(ref isLoading, value); }

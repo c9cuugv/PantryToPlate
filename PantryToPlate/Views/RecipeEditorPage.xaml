@@ -7,17 +7,17 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="20" Spacing="16">
+            <StackLayout Padding="16" Spacing="16">
                 <!-- Import Section -->
-                <Frame BorderColor="LightGray" CornerRadius="8" Padding="15" HasShadow="True">
+                <Frame BorderColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" CornerRadius="8" Padding="15" HasShadow="True">
                     <StackLayout Spacing="10">
                         <Label Text="Import Recipe from URL" FontSize="18" FontAttributes="Bold" />
                         <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
                             <Entry Grid.Column="0" Placeholder="https://..." Text="{Binding ImportUrl}" />
-                            <Button Grid.Column="1" Text="Load" Command="{Binding LoadRecipeFromUrlCommand}" />
+                            <Button Grid.Column="1" Text="Load" Command="{Binding LoadRecipeFromUrlCommand}" Style="{StaticResource BaseButton}" />
                         </Grid>
                         <ActivityIndicator IsRunning="{Binding IsLoadingRecipe}" IsVisible="{Binding IsLoadingRecipe}" HorizontalOptions="Center" />
-                        <Label Text="{Binding ImportError}" TextColor="Red" IsVisible="{Binding HasImportError}" />
+                        <Label Text="{Binding ImportError}" TextColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}" IsVisible="{Binding HasImportError}" />
                     </StackLayout>
                 </Frame>
 
@@ -29,7 +29,7 @@
                 <!-- Ingredients Review -->
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                     <Label Text="Review Ingredients" FontSize="18" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
-                    <Button Text="+ Add Row" Command="{Binding AddIngredientRowCommand}" Padding="5,0" HeightRequest="35" VerticalOptions="Center" />
+                    <Button Text="+ Add Row" Command="{Binding AddIngredientRowCommand}" Style="{StaticResource BaseButton}" Padding="10,5" HeightRequest="35" VerticalOptions="Center" />
                 </StackLayout>
 
                 <CollectionView ItemsSource="{Binding ParsedIngredients}" HeightRequest="250">
@@ -40,7 +40,7 @@
                                 <Entry Grid.Column="1" Placeholder="Name" Text="{Binding Name}" VerticalOptions="Center" />
                                 <Entry Grid.Column="2" Placeholder="Qty" Text="{Binding Quantity}" Keyboard="Numeric" VerticalOptions="Center" />
                                 <Entry Grid.Column="3" Placeholder="Unit" Text="{Binding Unit}" VerticalOptions="Center" />
-                                <Button Grid.Column="4" Text="X" Command="{Binding BindingContext.RemoveIngredientRowCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" BackgroundColor="Red" TextColor="White" Padding="5,0" WidthRequest="35" HeightRequest="35" VerticalOptions="Center" />
+                                <Button Grid.Column="4" Text="X" Command="{Binding BindingContext.RemoveIngredientRowCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" BackgroundColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}" TextColor="White" Padding="5,0" WidthRequest="35" HeightRequest="35" VerticalOptions="Center" />
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -50,11 +50,16 @@
                 <Button Text="Save Recipe"
                         Command="{Binding SaveRecipeCommand}"
                         IsEnabled="{Binding IsSaving, Converter={StaticResource InverseBoolConverter}}"
-                        BackgroundColor="Blue"
-                        TextColor="White"
+                        Style="{StaticResource BaseButton}"
                         Margin="0,20,0,0" />
 
                 <ActivityIndicator IsRunning="{Binding IsSaving}" IsVisible="{Binding IsSaving}" HorizontalOptions="Center" />
+
+                <Label Text="{Binding SaveStatus}"
+                       IsVisible="{Binding HasSaveStatus}"
+                       TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+                       HorizontalOptions="Center"
+                       FontSize="14" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -8,7 +8,7 @@
 
 
     <ContentPage.Content>
-        <StackLayout Padding="20" Spacing="10">
+        <StackLayout Padding="16" Spacing="10">
             <Label Text="Available Recipes"
                    FontSize="24"
                    FontAttributes="Bold"
@@ -17,9 +17,11 @@
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Button Text="Load Recipes"
                         Command="{Binding LoadRecipesCommand}"
+                        Style="{StaticResource BaseButton}"
                         IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBoolConverter}}" />
                 <Button Text="Add Recipe"
                         Command="{Binding CreateRecipeCommand}"
+                        Style="{StaticResource BaseButton}"
                         IsEnabled="{Binding IsLoading, Converter={StaticResource InverseBoolConverter}}" />
             </HorizontalStackLayout>
 

@@ -5,32 +5,35 @@
              x:Class="PantryToPlate.Views.RecipeDetailPage"
              Title="{Binding Recipe.Name}">
 
-
-
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="20" Spacing="15">
+            <StackLayout Padding="16" Spacing="15">
+
+                <!-- Recipe Title -->
                 <Label Text="{Binding Recipe.Name}"
                        FontSize="24"
                        FontAttributes="Bold"
                        HorizontalOptions="Center" />
 
-                <Frame CornerRadius="10" Padding="15" BackgroundColor="LightBlue">
+                <!-- Ingredients Section -->
+                <Frame Style="{StaticResource BaseCard}">
                     <StackLayout Spacing="10">
                         <Label Text="Ingredients:" FontSize="18" FontAttributes="Bold" />
+                        <BoxView HeightRequest="1" Color="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" HorizontalOptions="Fill" />
                         <CollectionView ItemsSource="{Binding Recipe.RequiredIngredients}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center" Padding="0,4">
                                         <Label Text="{Binding ., Converter={StaticResource BoolToCheckIconConverter}}"
-                                               FontSize="16" />
+                                               FontSize="16" VerticalOptions="Center" />
                                         <Label Text="{Binding QuantityRequired}"
-                                               FontSize="16" />
+                                               FontSize="16" VerticalOptions="Center" />
                                         <Label Text="{Binding Unit}"
-                                               FontSize="16" />
+                                               FontSize="16" VerticalOptions="Center" />
                                         <Label Text="{Binding Ingredient.Name}"
                                                FontSize="16"
-                                               FontAttributes="Bold" />
+                                               FontAttributes="Bold"
+                                               VerticalOptions="Center" />
                                     </HorizontalStackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
@@ -38,28 +41,40 @@
                     </StackLayout>
                 </Frame>
 
-                <Frame CornerRadius="10" Padding="15" BackgroundColor="LightGreen">
+                <!-- Instructions Section -->
+                <Frame Style="{StaticResource BaseCard}">
                     <StackLayout Spacing="10">
                         <Label Text="Cooking Instructions:" FontSize="18" FontAttributes="Bold" />
-                        <Label Text="{Binding Recipe.Instructions}"
-                               FontSize="16"
-                               LineBreakMode="WordWrap" />
+                        <BoxView HeightRequest="1" Color="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" HorizontalOptions="Fill" />
+                        <CollectionView ItemsSource="{Binding InstructionSteps}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding .}"
+                                           FontSize="14"
+                                           LineBreakMode="WordWrap"
+                                           LineHeight="1.5"
+                                           Padding="0,4" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </StackLayout>
                 </Frame>
 
+                <!-- Cook Button -->
                 <Button Text="Got it! I'm cooking this"
                         Command="{Binding CookRecipeCommand}"
-                        BackgroundColor="Green"
-                        TextColor="White"
+                        Style="{StaticResource BaseButton}"
                         FontSize="18"
                         HorizontalOptions="Fill"
+                        Margin="0,10,0,0"
                         IsEnabled="{Binding IsCooking, Converter={StaticResource InverseBoolConverter}}" />
 
+                <!-- Delete Button -->
                 <Button Text="Delete Recipe"
                         Command="{Binding DeleteRecipeCommand}"
-                        BackgroundColor="Red"
-                        TextColor="White"
-                        FontSize="18"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}"
+                        TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}"
+                        FontSize="14"
                         HorizontalOptions="Fill" />
 
                 <ActivityIndicator IsRunning="{Binding IsCooking}"

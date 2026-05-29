@@ -8,7 +8,7 @@
 
 
     <ContentPage.Content>
-        <StackLayout Padding="20" Spacing="15">
+        <StackLayout Padding="16" Spacing="15">
             <Label Text="Shopping List"
                    FontSize="24"
                    FontAttributes="Bold"
@@ -16,13 +16,12 @@
 
             <Button Text="Load Shopping List"
                     Command="{Binding LoadShoppingListItemsCommand}"
-                    BackgroundColor="DarkBlue"
-                    TextColor="White" />
+                    Style="{StaticResource BaseButton}" />
 
             <CollectionView ItemsSource="{Binding ShoppingListItems}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame CornerRadius="10" Padding="10" Margin="5" BackgroundColor="LightGray">
+                        <Frame Style="{StaticResource BaseCard}">
                             <HorizontalStackLayout VerticalOptions="Center" Spacing="12">
                                 <CheckBox IsChecked="{Binding IsPurchased, Mode=TwoWay}"
                                           CheckedChanged="OnPurchasedToggled" />
@@ -37,13 +36,13 @@
 
             <Button Text="Clear Purchased"
                     Command="{Binding ClearPurchasedCommand}"
-                    BackgroundColor="Red"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}"
                     TextColor="White" />
 
             <Label Text="No shopping items found. Add recipes or ingredients to generate your list."
                    IsVisible="{Binding ShoppingListItems, Converter={StaticResource InverseBoolConverter}}"
                    HorizontalOptions="Center"
-                   TextColor="Gray" />
+                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
         </StackLayout>
     </ContentPage.Content>
 
