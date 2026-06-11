@@ -62,6 +62,22 @@ public partial class RecipeEditorViewModel : BaseViewModel
     }
     public bool HasImportError => !string.IsNullOrEmpty(ImportError);
 
+    private string saveStatus = string.Empty;
+    public string SaveStatus
+    {
+        get => saveStatus;
+        set
+        {
+            if (SetProperty(ref saveStatus, value))
+            {
+                OnPropertyChanged(nameof(HasSaveStatus));
+                OnPropertyChanged(nameof(IsSaveError));
+            }
+        }
+    }
+    public bool HasSaveStatus => !string.IsNullOrEmpty(SaveStatus);
+    public bool IsSaveError => HasSaveStatus && SaveStatus.StartsWith("Error");
+
     // Collection of editable ingredient rows
     public ObservableCollection<RecipeIngredientEditItem> ParsedIngredients { get; } = new();
 
@@ -111,10 +127,22 @@ public partial class RecipeEditorViewModel : BaseViewModel
 
     public async Task SaveRecipeAsync()
     {
-        if (string.IsNullOrWhiteSpace(RecipeName) || string.IsNullOrWhiteSpace(Instructions) || IsSaving)
+        if (IsSaving)
             return;
 
+        if (string.IsNullOrWhiteSpace(RecipeName))
+        {
+            SaveStatus = "Error: Please enter a recipe name.";
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(Instructions))
+        {
+            SaveStatus = "Error: Please enter cooking instructions.";
+            return;
+        }
+
         IsSaving = true;
+        SaveStatus = string.Empty;
         try
         {
             var recipe = new Recipe
@@ -124,10 +152,8 @@ public partial class RecipeEditorViewModel : BaseViewModel
                 RequiredIngredients = new List<RecipeIngredient>()
             };
 
-            // Resolve ingredients via DB, creating new ones if necessary
             foreach (var editItem in ParsedIngredients.Where(i => i.IsSelected))
             {
-                // Try to find existing ingredient
                 var existing = await _db.Ingredients.FirstOrDefaultAsync(i => i.Name == editItem.Name);
                 if (existing == null)
                 {
@@ -145,7 +171,12 @@ public partial class RecipeEditorViewModel : BaseViewModel
             }
 
             await _recipeService.AddRecipeAsync(recipe);
+            SaveStatus = $"Saved \"{RecipeName}\"!";
             await _navigationService.GoToAsync("..", true);
+        }
+        catch (Exception ex)
+        {
+            SaveStatus = $"Error: {ex.Message}";
         }
         finally
         {

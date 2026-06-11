@@ -25,19 +25,32 @@
                             <HorizontalStackLayout VerticalOptions="Center" Spacing="12">
                                 <CheckBox IsChecked="{Binding IsPurchased, Mode=TwoWay}"
                                           CheckedChanged="OnPurchasedToggled" />
-                                <Label Text="{Binding Ingredient.Name}"
-                                       FontSize="16"
-                                       TextDecorations="{Binding IsPurchased, Converter={StaticResource BoolToStrikethroughConverter}}" />
+                                <VerticalStackLayout Spacing="2">
+                                    <Label Text="{Binding Ingredient.Name}"
+                                           FontSize="16"
+                                           TextDecorations="{Binding IsPurchased, Converter={StaticResource BoolToStrikethroughConverter}}" />
+                                    <Label Text="{Binding PurchaseAmountText}"
+                                           FontSize="13"
+                                           TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                                           TextDecorations="{Binding IsPurchased, Converter={StaticResource BoolToStrikethroughConverter}}" />
+                                </VerticalStackLayout>
                             </HorizontalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Button Text="Clear Purchased"
-                    Command="{Binding ClearPurchasedCommand}"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}"
-                    TextColor="White" />
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                <Button Text="Clear Purchased"
+                        Grid.Column="0"
+                        Command="{Binding ClearPurchasedCommand}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}"
+                        TextColor="White" />
+                <Button Text="Put Back to Pantry"
+                        Grid.Column="1"
+                        Command="{Binding RestockToPantryCommand}"
+                        Style="{StaticResource BaseButton}" />
+            </Grid>
 
             <Label Text="No shopping items found. Add recipes or ingredients to generate your list."
                    IsVisible="{Binding ShoppingListItems, Converter={StaticResource InverseBoolConverter}}"

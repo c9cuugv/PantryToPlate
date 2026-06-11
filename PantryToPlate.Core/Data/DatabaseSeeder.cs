@@ -271,5 +271,24 @@ public static class DatabaseSeeder
 
         db.Recipes.AddRange(recipes);
         await db.SaveChangesAsync();
+
+        // --- Seed some pantry items so the dashboard shows recipes on first launch ---
+        var basicPantry = new[]
+        {
+            new PantryItem { Ingredient = ing["Onion"], IngredientId = ing["Onion"].Id, QuantityInStock = 5, Unit = "unit" },
+            new PantryItem { Ingredient = ing["Garlic"], IngredientId = ing["Garlic"].Id, QuantityInStock = 10, Unit = "whole" },
+            new PantryItem { Ingredient = ing["Egg"], IngredientId = ing["Egg"].Id, QuantityInStock = 12, Unit = "whole" },
+            new PantryItem { Ingredient = ing["Rice"], IngredientId = ing["Rice"].Id, QuantityInStock = 1000, Unit = "grams" },
+            new PantryItem { Ingredient = ing["Pasta"], IngredientId = ing["Pasta"].Id, QuantityInStock = 500, Unit = "grams" },
+            new PantryItem { Ingredient = ing["Tomato"], IngredientId = ing["Tomato"].Id, QuantityInStock = 6, Unit = "whole" },
+            new PantryItem { Ingredient = ing["Potato"], IngredientId = ing["Potato"].Id, QuantityInStock = 8, Unit = "whole" },
+            new PantryItem { Ingredient = ing["Carrot"], IngredientId = ing["Carrot"].Id, QuantityInStock = 6, Unit = "whole" },
+            new PantryItem { Ingredient = ing["Chicken Breast"], IngredientId = ing["Chicken Breast"].Id, QuantityInStock = 600, Unit = "grams" },
+            new PantryItem { Ingredient = ing["Bread"], IngredientId = ing["Bread"].Id, QuantityInStock = 1, Unit = "whole" },
+            new PantryItem { Ingredient = ing["Cheese"], IngredientId = ing["Cheese"].Id, QuantityInStock = 200, Unit = "grams" },
+            new PantryItem { Ingredient = ing["Milk"], IngredientId = ing["Milk"].Id, QuantityInStock = 1000, Unit = "ml" },
+        };
+        db.Pantry.AddRange(basicPantry);
+        await db.SaveChangesAsync();
     }
 }

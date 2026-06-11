@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<journey name="Home Page - Browse Recipes">
+  <description>Test Home tab: load recipes, verify recipe list, tap to navigate to detail, test add recipe button</description>
+  <actions>
+    <action>Verify the app is on the Home screen with "Recipes" title visible</action>
+    <action>Tap the "Load Recipes" button</action>
+    <action>Verify that a list of recipe cards appears on screen</action>
+    <action>Tap the "Add Recipe" button</action>
+    <action>Verify the Recipe Editor page appears with input fields for recipe name and instructions</action>
+    <action>Tap the back button to return to the Home screen</action>
+    <action>Tap the first recipe card in the list</action>
+    <action>Verify the Recipe Detail page appears with the recipe name as title</action>
+  </actions>
+</journey>

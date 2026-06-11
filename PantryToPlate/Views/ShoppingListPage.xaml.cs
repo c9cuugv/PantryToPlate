@@ -22,7 +22,10 @@ public partial class ShoppingListPage : ContentPage
     {
         if (sender is CheckBox checkBox && checkBox.BindingContext is Core.Models.ShoppingListItem item)
         {
-            ViewModel.TogglePurchasedCommand.Execute(item);
+            if (item.IsPurchased != e.Value)
+            {
+                ViewModel.TogglePurchasedCommand.Execute(item);
+            }
         }
     }
 }

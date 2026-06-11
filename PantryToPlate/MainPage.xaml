@@ -9,7 +9,7 @@
 
     <ContentPage.Content>
         <StackLayout Padding="16" Spacing="10">
-            <Label Text="Available Recipes"
+            <Label Text="Recipes"
                    FontSize="24"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
@@ -29,15 +29,35 @@
                              IsVisible="{Binding IsLoading}" />
 
             <CollectionView ItemsSource="{Binding Recipes}"
-                           SelectionMode="Single"
-                           SelectionChanged="OnRecipeSelected">
+                           SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Style="{StaticResource BaseCard}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.NavigateToRecipeCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                                      CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
                             <StackLayout>
-                                <Label Text="{Binding Name}"
-                                       FontSize="18"
-                                       FontAttributes="Bold" />
+                                <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,5">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           Grid.Column="0"
+                                           VerticalOptions="Center" />
+                                    <Frame BackgroundColor="#2E7D32" 
+                                           CornerRadius="4" 
+                                           Padding="6,2" 
+                                           HasShadow="False"
+                                           BorderColor="Transparent"
+                                           IsVisible="{Binding CanMake}"
+                                           Grid.Column="1"
+                                           VerticalOptions="Center">
+                                        <Label Text="Pantry Ready" 
+                                               TextColor="White" 
+                                               FontSize="10" 
+                                               FontAttributes="Bold" />
+                                    </Frame>
+                                </Grid>
                                 <Label Text="{Binding RequiredIngredients, Converter={StaticResource IngredientsToSummaryConverter}}"
                                         FontSize="14"
                                         TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
@@ -47,7 +67,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="No recipes available. Add ingredients to your pantry or add a new recipe!"
+            <Label Text="No recipes added yet. Tap 'Add Recipe' to create a new one!"
                    IsVisible="{Binding HasRecipes, Converter={StaticResource InverseBoolConverter}}"
                    HorizontalOptions="Center"
                    TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<journey name="Delete Recipe">
+  <description>Test deleting a recipe from the detail page: navigate to a recipe, tap delete, confirm deletion, verify navigation back to Home</description>
+  <actions>
+    <action>Tap the "Home" tab at the bottom of the screen</action>
+    <action>Tap the "Load Recipes" button</action>
+    <action>Tap the last recipe card in the list</action>
+    <action>Verify the Recipe Detail page appears with the recipe name</action>
+    <action>Tap the "Delete Recipe" button</action>
+    <action>Verify a confirmation dialog or alert appears</action>
+    <action>Confirm the deletion by tapping the confirm or OK button</action>
+    <action>Verify the app navigates back to the Home screen</action>
+  </actions>
+</journey>

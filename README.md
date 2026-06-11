@@ -13,6 +13,10 @@ PantryToPlate is a .NET MAUI sample app designed to turn kitchen inventory into 
 3. Shopping list: toggle purchased, clear purchased
 4. Seeded set of staple and non-staple ingredients + recipes
 
+> [!CAUTION]
+> This application is currently built and verified **ONLY for Android**. An APK is provided in the repository for testing purposes. Other platforms (iOS, Windows, MacCatalyst) are not officially supported or tested at this time.
+
+
 ## Architecture
 - MVVM (CommunityToolkit.Mvvm)
 - EF Core SQLite for local data persistence

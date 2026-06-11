@@ -8,13 +8,14 @@
 
 
     <ContentPage.Content>
-        <StackLayout Padding="16" Spacing="15">
+        <Grid RowDefinitions="Auto, Auto, *" Padding="16" RowSpacing="15">
             <Label Text="My Pantry"
                    FontSize="24"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center" />
+                   HorizontalOptions="Center"
+                   Grid.Row="0" />
 
-            <Frame CornerRadius="10" Padding="15" BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Gray600}}">
+            <Frame CornerRadius="10" Padding="15" BackgroundColor="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Gray600}}" Grid.Row="1">
                 <StackLayout Spacing="10">
                     <Label Text="Add Ingredient" FontSize="18" FontAttributes="Bold" />
 
@@ -40,21 +41,12 @@
                 </StackLayout>
             </Frame>
 
-            <CollectionView ItemsSource="{Binding PantryItems}">
+            <CollectionView ItemsSource="{Binding PantryItems}" Grid.Row="2">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItems Mode="Execute">
-                                    <SwipeItem Text="Delete"
-                                             BackgroundColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}"
-                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PantryViewModel}}, Path=DeletePantryItemCommand}"
-                                             CommandParameter="{Binding .}" />
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
-
-                            <Frame Style="{StaticResource BaseCard}">
-                                <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Frame Style="{StaticResource BaseCard}">
+                            <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                                <HorizontalStackLayout Spacing="10" Grid.Column="0" VerticalOptions="Center">
                                     <Label Text="{Binding Ingredient.Name}"
                                            FontSize="16"
                                            FontAttributes="Bold" />
@@ -63,8 +55,19 @@
                                     <Label Text="{Binding Unit}"
                                            FontSize="16" />
                                 </HorizontalStackLayout>
-                            </Frame>
-                        </SwipeView>
+                                <Button Grid.Column="1"
+                                        Text="Delete"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PantryViewModel}}, Path=DeletePantryItemCommand}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Magenta}}"
+                                        TextColor="White"
+                                        FontSize="12"
+                                        Padding="10,5"
+                                        CornerRadius="5"
+                                        HeightRequest="35"
+                                        VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -72,8 +75,10 @@
             <Label Text="No items in pantry yet!"
                    IsVisible="{Binding PantryItems, Converter={StaticResource InverseBoolConverter}}"
                    HorizontalOptions="Center"
-                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
-        </StackLayout>
+                   TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}"
+                   Grid.Row="2"
+                   VerticalOptions="Center" />
+        </Grid>
     </ContentPage.Content>
 
 </ContentPage>

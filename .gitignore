@@ -56,3 +56,5 @@ project.assets.json
 # end .gitignore**/bin/
 **/obj/
 *.pdb
+
+**/screenshots

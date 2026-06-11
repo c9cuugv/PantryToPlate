@@ -1,0 +1,64 @@
+{
+  "project": "PantryToPlate",
+  "branchName": "ralph/dark-mode-ui-ux",
+  "description": "Dark Mode and UI/UX Improvements - Fix hardcoded colors and improve overall UI",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Replace hardcoded colors with theme-aware resources",
+      "description": "As a user, I want the app to adapt to light and dark mode so that it's readable in both.",
+      "acceptanceCriteria": [
+        "Replace all hardcoded BackgroundColor values (LightYellow, LightBlue, LightGreen) with dynamic resources",
+        "Ensure text colors are readable in both modes by using appropriate dynamic colors",
+        "Update SwipeView delete button to use theme-aware colors",
+        "Check all frames and labels for color issues",
+        "All existing tests continue to pass"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Improve Pantry page UI/UX",
+      "description": "As a user, I want the pantry page to be more intuitive and visually appealing.",
+      "acceptanceCriteria": [
+        "Make the add ingredient form more compact and visually balanced",
+        "Improve spacing and alignment of elements",
+        "Consider using input validation for quantity field",
+        "All existing tests continue to pass"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Improve RecipeDetailPage layout",
+      "description": "As a user, I want the recipe detail page to be more readable and easier to use.",
+      "acceptanceCriteria": [
+        "Better organization of ingredients and instructions sections",
+        "Improve the visual hierarchy of information",
+        "Make the cooking instructions more readable",
+        "All existing tests continue to pass"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Ensure consistent styling across pages",
+      "description": "As a user, I want a consistent look and feel throughout the app.",
+      "acceptanceCriteria": [
+        "Standardize button styles",
+        "Consistent padding and spacing",
+        "Unified typography",
+        "All existing tests continue to pass"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

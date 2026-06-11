@@ -1,0 +1,7 @@
+## Codebase Patterns
+- MAUI app uses manual INotifyPropertyChanged — NO CommunityToolkit.Mvvm
+- Dynamic resources defined in App.xaml ResourceDictionary — use StaticResource/DynamicResource in XAML
+- ViewModels in PantryToPlate/ (MAUI project), not Core
+- Tests only in PantryToPlate.Tests/ targeting PantryToPlate.Core
+- Build: export DOTNET_ROOT="/Volumes/APPLE HDD ST2000DM001 Media/dotnet-sdk" && export PATH="$DOTNET_ROOT:$PATH"
+- XAML SourceGen enabled — no runtime-only APIs

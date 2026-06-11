@@ -45,17 +45,20 @@ public partial class RecipeDetailViewModel : BaseViewModel
     public bool IsCooking { get => isCooking; set => SetProperty(ref isCooking, value); }
 
     private readonly INavigationService _navigationService;
+    private readonly IDialogService _dialogService;
 
     public RecipeDetailViewModel()
     {
         _recipeService = null!;
         _navigationService = null!;
+        _dialogService = null!;
     }
 
-    public RecipeDetailViewModel(IRecipeService recipeService, INavigationService navigationService)
+    public RecipeDetailViewModel(IRecipeService recipeService, INavigationService navigationService, IDialogService dialogService)
     {
         _recipeService = recipeService;
         _navigationService = navigationService;
+        _dialogService = dialogService;
     }
 
     public async Task LoadRecipeAsync(int recipeId)
@@ -81,8 +84,12 @@ public partial class RecipeDetailViewModel : BaseViewModel
         IsCooking = true;
         try
         {
-            await _recipeService.CookRecipeAsync(Recipe.Id);
-            await _navigationService.GoToAsync("..");
+            bool confirm = await _dialogService.ShowConfirmAsync("Cook Recipe", "Great choice! Are you sure you want to make this?", "Yes", "No");
+            if (confirm)
+            {
+                await _recipeService.CookRecipeAsync(Recipe.Id);
+                await _navigationService.GoToAsync("..");
+            }
         }
         finally
         {

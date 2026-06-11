@@ -49,4 +49,30 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(s => s.IngredientId);
     }
+
+    public void EnsureShoppingListSchema()
+    {
+        Database.OpenConnection();
+
+        var columns = new HashSet<string>();
+        using var command = Database.GetDbConnection().CreateCommand();
+        command.CommandText = "PRAGMA table_info(\"ShoppingList\");";
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            columns.Add(reader.GetString(1));
+        }
+
+        if (columns.Count == 0) return;
+
+        if (!columns.Contains("QuantityToBuy"))
+        {
+            Database.ExecuteSqlRaw("ALTER TABLE \"ShoppingList\" ADD COLUMN \"QuantityToBuy\" TEXT NOT NULL DEFAULT '0';");
+        }
+
+        if (!columns.Contains("Unit"))
+        {
+            Database.ExecuteSqlRaw("ALTER TABLE \"ShoppingList\" ADD COLUMN \"Unit\" TEXT NOT NULL DEFAULT '';");
+        }
+    }
 }

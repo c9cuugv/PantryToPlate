@@ -13,6 +13,14 @@ public class RecipeService : IRecipeService
         _db = db;
     }
 
+    public async Task<List<Recipe>> GetAllRecipesAsync()
+    {
+        return await _db.Recipes
+            .Include(r => r.RequiredIngredients)
+                .ThenInclude(ri => ri.Ingredient)
+            .ToListAsync();
+    }
+
     public async Task<List<Recipe>> GetAvailableRecipesAsync()
     {
         var recipes = await _db.Recipes
@@ -98,6 +106,7 @@ public class RecipeService : IRecipeService
     {
         var recipe = await _db.Recipes
             .Include(r => r.RequiredIngredients)
+                .ThenInclude(ri => ri.Ingredient)
             .FirstOrDefaultAsync(r => r.Id == recipeId);
 
         if (recipe == null) return;
@@ -107,28 +116,53 @@ public class RecipeService : IRecipeService
             var pantryItem = await _db.Pantry
                 .FirstOrDefaultAsync(p => p.IngredientId == ri.IngredientId);
 
-            if (pantryItem == null) continue;
-
-            var factor = GetConversionFactor(ri.Unit, pantryItem.Unit);
-            var deductedQty = ri.QuantityRequired * factor;
-
-            pantryItem.QuantityInStock -= deductedQty;
-
-            if (pantryItem.QuantityInStock <= 0.001m)
+            if (pantryItem != null)
             {
-                _db.Pantry.Remove(pantryItem);
+                var factor = GetConversionFactor(ri.Unit, pantryItem.Unit);
+                var deductedQty = ri.QuantityRequired * factor;
 
-                var exists = await _db.ShoppingList
-                    .AnyAsync(s => s.IngredientId == ri.IngredientId);
-                if (!exists)
-                    _db.ShoppingList.Add(new ShoppingListItem { IngredientId = ri.IngredientId });
+                pantryItem.QuantityInStock -= deductedQty;
+
+                if (pantryItem.QuantityInStock <= 0.001m)
+                {
+                    _db.Pantry.Remove(pantryItem);
+                }
+            }
+
+            if (!ri.Ingredient.IsStaple)
+            {
+                var shoppingItem = await _db.ShoppingList
+                    .FirstOrDefaultAsync(s => s.IngredientId == ri.IngredientId);
+
+                if (shoppingItem == null)
+                {
+                    _db.ShoppingList.Add(new ShoppingListItem
+                    {
+                        IngredientId = ri.IngredientId,
+                        QuantityToBuy = ri.QuantityRequired,
+                        Unit = ri.Unit
+                    });
+                }
+                else
+                {
+                    if (string.IsNullOrWhiteSpace(shoppingItem.Unit))
+                    {
+                        shoppingItem.Unit = ri.Unit;
+                        shoppingItem.QuantityToBuy += ri.QuantityRequired;
+                    }
+                    else
+                    {
+                        var factor = GetConversionFactor(ri.Unit, shoppingItem.Unit);
+                        shoppingItem.QuantityToBuy += ri.QuantityRequired * factor;
+                    }
+                }
             }
         }
 
         await _db.SaveChangesAsync();
     }
 
-    private static decimal GetConversionFactor(string fromUnit, string toUnit)
+    public static decimal GetConversionFactor(string fromUnit, string toUnit)
     {
         fromUnit = fromUnit.ToLowerInvariant().Trim();
         toUnit = toUnit.ToLowerInvariant().Trim();

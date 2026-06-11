@@ -33,9 +33,11 @@ public static class MauiProgram
 			options.UseSqlite($"Data Source={dbPath}"));
 
 		// Register Services
+		builder.Services.AddSingleton<IDatabaseInitializer, DatabaseInitializer>();
 		builder.Services.AddScoped<IRecipeService, RecipeService>();
 		builder.Services.AddScoped<IRecipeImportService, RecipeImportService>();
 		builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
+		builder.Services.AddSingleton<IDialogService, MauiDialogService>();
 		builder.Services.AddSingleton<TestService>();
 
 		// Register ViewModels
@@ -60,16 +62,10 @@ public static class MauiProgram
 
 		var app = builder.Build();
 
-		// Initialize and seed database
-		using (var scope = app.Services.CreateScope())
-		{
-			var test = scope.ServiceProvider.GetService<TestService>();
-			System.Diagnostics.Debug.WriteLine($"=== ASSEMBLY VERSION CHECK: {test?.Message ?? "FAILED"} ===");
-			
-			var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-			db.Database.EnsureCreated();
-			DatabaseSeeder.SeedAsync(db).Wait();
-		}
+		var test = app.Services.GetService<TestService>();
+		System.Diagnostics.Debug.WriteLine($"=== ASSEMBLY VERSION CHECK: {test?.Message ?? "FAILED"} ===");
+
+		app.Services.GetRequiredService<IDatabaseInitializer>().Start();
 
 		return app;
 	}

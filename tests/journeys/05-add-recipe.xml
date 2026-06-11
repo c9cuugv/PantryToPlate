@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<journey name="Add Recipe - Full Flow">
+  <description>Test adding a new recipe: navigate from Home to editor, fill in recipe name and instructions, save, verify it appears in the list</description>
+  <actions>
+    <action>Tap the "Home" tab at the bottom of the screen</action>
+    <action>Tap the "Load Recipes" button</action>
+    <action>Tap the "Add Recipe" button</action>
+    <action>Verify the Recipe Editor page is displayed with input fields</action>
+    <action>Tap the recipe name input field and type "Test Journey Recipe"</action>
+    <action>Tap the instructions input field and type "Step 1: Mix all ingredients together. Step 2: Cook for 20 minutes."</action>
+    <action>Tap the save or submit button to save the recipe</action>
+    <action>Verify the app navigates back to the Home screen</action>
+    <action>Tap the "Load Recipes" button to refresh the list</action>
+    <action>Verify "Test Journey Recipe" appears in the recipe list</action>
+  </actions>
+</journey>

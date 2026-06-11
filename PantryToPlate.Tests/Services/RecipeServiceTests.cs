@@ -116,7 +116,7 @@ public class RecipeServiceTests : IDisposable
     }
 
     [Fact]
-    public async Task CookRecipeAsync_AddsDepleted_ToShoppingList()
+    public async Task CookRecipeAsync_AddsAllNonStapleIngredients_ToShoppingList()
     {
         await SeedBasicDataAsync();
         var tomato = _db.Ingredients.Single(i => i.Name == "Tomato");
@@ -129,8 +129,30 @@ public class RecipeServiceTests : IDisposable
         await _sut.CookRecipeAsync(recipe.Id);
 
         var shopping = _db.ShoppingList.ToList();
-        Assert.Single(shopping); // only tomato depleted
-        Assert.Equal(tomato.Id, shopping[0].IngredientId);
+        Assert.Equal(2, shopping.Count); // both tomato and pasta are added
+        Assert.Contains(shopping, s => s.IngredientId == tomato.Id);
+        Assert.Contains(shopping, s => s.IngredientId == pasta.Id);
+    }
+
+    [Fact]
+    public async Task CookRecipeAsync_AddsRecipeQuantitiesAndUnits_ToShoppingList()
+    {
+        await SeedBasicDataAsync();
+
+        var recipe = _db.Recipes.First();
+        await _sut.CookRecipeAsync(recipe.Id);
+
+        var shopping = _db.ShoppingList
+            .Include(s => s.Ingredient)
+            .ToList();
+
+        var tomato = shopping.Single(s => s.Ingredient.Name == "Tomato");
+        Assert.Equal(2, tomato.QuantityToBuy);
+        Assert.Equal("whole", tomato.Unit);
+
+        var pasta = shopping.Single(s => s.Ingredient.Name == "Pasta");
+        Assert.Equal(100, pasta.QuantityToBuy);
+        Assert.Equal("grams", pasta.Unit);
     }
 
     [Fact]
@@ -149,6 +171,29 @@ public class RecipeServiceTests : IDisposable
 
         var tomatoEntries = _db.ShoppingList.Count(s => s.IngredientId == tomato.Id);
         Assert.Equal(1, tomatoEntries); // no duplicate
+    }
+
+    [Fact]
+    public async Task CookRecipeAsync_AddsQuantityToExistingShoppingListItem()
+    {
+        await SeedBasicDataAsync();
+
+        var tomato = _db.Ingredients.Single(i => i.Name == "Tomato");
+        _db.ShoppingList.Add(new ShoppingListItem
+        {
+            Ingredient = tomato,
+            IngredientId = tomato.Id,
+            QuantityToBuy = 2,
+            Unit = "whole"
+        });
+        await _db.SaveChangesAsync();
+
+        var recipe = _db.Recipes.First();
+        await _sut.CookRecipeAsync(recipe.Id);
+
+        var tomatoItem = _db.ShoppingList.Single(s => s.IngredientId == tomato.Id);
+        Assert.Equal(4, tomatoItem.QuantityToBuy);
+        Assert.Equal("whole", tomatoItem.Unit);
     }
 
     [Fact]

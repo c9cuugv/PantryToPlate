@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<journey name="Pantry - Add and Delete Ingredients">
+  <description>Test Pantry tab: verify add ingredient form, add a new ingredient, verify it appears in the list, swipe to delete it</description>
+  <actions>
+    <action>Tap the "Pantry" tab at the bottom of the screen</action>
+    <action>Verify the "My Pantry" title is visible</action>
+    <action>Verify the "Add Ingredient" form is visible with input fields for name, quantity, and unit</action>
+    <action>Tap the "Ingredient name" input field and type "Tomatoes"</action>
+    <action>Tap the "Quantity" input field and type "5"</action>
+    <action>Tap the "Unit" input field and type "unit"</action>
+    <action>Tap the "Add to Pantry" button</action>
+    <action>Verify "Tomatoes" appears in the pantry list below the form</action>
+    <action>Swipe left on the "Tomatoes" pantry item to reveal the delete option</action>
+    <action>Tap "Delete" to remove the item</action>
+    <action>Verify "Tomatoes" is no longer visible in the pantry list</action>
+  </actions>
+</journey>

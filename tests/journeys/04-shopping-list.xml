@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<journey name="Shopping List - Toggle and Clear">
+  <description>Test Shopping List tab: load items, toggle checkbox to mark purchased with strikethrough, clear purchased items</description>
+  <actions>
+    <action>Tap the "Shopping List" tab at the bottom of the screen</action>
+    <action>Verify the "Shopping List" title is visible</action>
+    <action>Tap the "Load Shopping List" button</action>
+    <action>Check if shopping list items are displayed in a list</action>
+    <action>Tap the checkbox on the first shopping list item to mark it as purchased</action>
+    <action>Verify the first item text has strikethrough decoration indicating it is purchased</action>
+    <action>Tap the "Clear Purchased" button</action>
+    <action>Verify the checked item has been removed from the list</action>
+  </actions>
+</journey>

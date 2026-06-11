@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PantryToPlate.Core.Models;
 
 public class Recipe
@@ -6,4 +8,7 @@ public class Recipe
     public string Name { get; set; } = string.Empty;
     public string Instructions { get; set; } = string.Empty;
     public List<RecipeIngredient> RequiredIngredients { get; set; } = [];
+
+    [NotMapped]
+    public bool CanMake { get; set; }
 }

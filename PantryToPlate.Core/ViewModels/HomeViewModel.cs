@@ -8,12 +8,23 @@ namespace PantryToPlate.Core.ViewModels;
 public partial class HomeViewModel : BaseViewModel
 {
     private readonly IRecipeService _recipeService;
+    private readonly IDatabaseInitializer? _databaseInitializer;
 
     private ObservableCollection<Recipe> recipes = new();
-    public ObservableCollection<Recipe> Recipes { get => recipes; set => SetProperty(ref recipes, value); }
+    public ObservableCollection<Recipe> Recipes
+    {
+        get => recipes;
+        set
+        {
+            if (SetProperty(ref recipes, value))
+                OnPropertyChanged(nameof(HasRecipes));
+        }
+    }
 
     private bool isLoading;
     public bool IsLoading { get => isLoading; set => SetProperty(ref isLoading, value); }
+
+    public bool HasRecipes => Recipes.Count > 0;
 
     private readonly INavigationService _navigationService;
 
@@ -23,10 +34,11 @@ public partial class HomeViewModel : BaseViewModel
         _navigationService = null!;
     }
 
-    public HomeViewModel(IRecipeService recipeService, INavigationService navigationService)
+    public HomeViewModel(IRecipeService recipeService, INavigationService navigationService, IDatabaseInitializer? databaseInitializer = null)
     {
         _recipeService = recipeService;
         _navigationService = navigationService;
+        _databaseInitializer = databaseInitializer;
     }
 
     public ICommand LoadRecipesCommand => new RelayCommand(async () => await LoadRecipesAsync());
@@ -37,12 +49,29 @@ public partial class HomeViewModel : BaseViewModel
         IsLoading = true;
         try
         {
+            if (_databaseInitializer is not null)
+                await _databaseInitializer.Initialized;
+
+            var allRecipes = await _recipeService.GetAllRecipesAsync();
             var availableRecipes = await _recipeService.GetAvailableRecipesAsync();
+            var availableIds = availableRecipes.Select(r => r.Id).ToHashSet();
+
+            foreach (var recipe in allRecipes)
+            {
+                recipe.CanMake = availableIds.Contains(recipe.Id);
+            }
+
+            var sortedRecipes = allRecipes
+                .OrderByDescending(r => r.CanMake)
+                .ThenBy(r => r.Name)
+                .ToList();
+
             Recipes.Clear();
-            foreach (var recipe in availableRecipes)
+            foreach (var recipe in sortedRecipes)
             {
                 Recipes.Add(recipe);
             }
+            OnPropertyChanged(nameof(HasRecipes));
         }
         finally
         {

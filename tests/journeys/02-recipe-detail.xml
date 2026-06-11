@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<journey name="Recipe Detail - View and Cook">
+  <description>Test Recipe Detail page: view ingredients and instructions sections, tap cook button which auto-deducts pantry items and navigates back</description>
+  <actions>
+    <action>Tap the "Home" tab at the bottom of the screen</action>
+    <action>Tap the "Load Recipes" button</action>
+    <action>Tap the first recipe card in the list</action>
+    <action>Verify the "Ingredients:" section is visible with a list of ingredients showing quantities and names</action>
+    <action>Verify the "Cooking Instructions:" section is visible with step-by-step instructions</action>
+    <action>Verify the "Got it! I'm cooking this" button is visible and enabled</action>
+    <action>Verify the "Delete Recipe" button is visible</action>
+    <action>Tap the "Got it! I'm cooking this" button</action>
+    <action>Verify the app navigates back to the Home screen</action>
+  </actions>
+</journey>

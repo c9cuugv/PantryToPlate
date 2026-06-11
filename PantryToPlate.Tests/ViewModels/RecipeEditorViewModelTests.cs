@@ -74,4 +74,47 @@ public class RecipeEditorViewModelTests : IDisposable
         _recipeServiceMock.Verify(s => s.AddRecipeAsync(It.IsAny<Recipe>()), Times.Never);
         _navigationServiceMock.Verify(s => s.GoToAsync(It.IsAny<string>(), It.IsAny<bool>()), Times.Never);
     }
+
+    [Fact]
+    public void HasSaveStatus_IsFalse_Initially()
+    {
+        Assert.False(_viewModel.HasSaveStatus);
+        Assert.False(_viewModel.IsSaveError);
+    }
+
+    [Fact]
+    public async Task SaveRecipeAsync_WithEmptyName_SetsSaveStatusErrorAndIsSaveError()
+    {
+        _viewModel.RecipeName = "";
+        _viewModel.Instructions = "Some instructions";
+
+        await _viewModel.SaveRecipeAsync();
+
+        Assert.True(_viewModel.HasSaveStatus);
+        Assert.StartsWith("Error", _viewModel.SaveStatus);
+        Assert.True(_viewModel.IsSaveError);
+    }
+
+    [Fact]
+    public async Task SaveRecipeAsync_WithEmptyInstructions_SetsSaveStatusError()
+    {
+        _viewModel.RecipeName = "Valid Name";
+        _viewModel.Instructions = "";
+
+        await _viewModel.SaveRecipeAsync();
+
+        Assert.True(_viewModel.HasSaveStatus);
+        Assert.True(_viewModel.IsSaveError);
+    }
+
+    [Fact]
+    public async Task SaveRecipeAsync_WithValidData_ClearsSaveStatus()
+    {
+        _viewModel.RecipeName = "Valid Recipe";
+        _viewModel.Instructions = "Do the thing";
+
+        await _viewModel.SaveRecipeAsync();
+
+        Assert.False(_viewModel.IsSaveError);
+    }
 }
