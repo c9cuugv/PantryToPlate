@@ -38,9 +38,6 @@ PantryToPlate is a .NET MAUI sample app designed to turn kitchen inventory into 
 2. `dotnet test PantryToPlate.Tests/PantryToPlate.Tests.csproj`
 3. Use Visual Studio 2022/2023 with MAUI workload and a valid SDK as needed
 
-## Progress tracking
-- `PROGRESS.md` is the single source of truth for task status.
-- Update it with [x], [~], [ ] and change `Last Updated` each task.
 
 ## Notes
 - The current environment may require JDK 21 for Android builds (`dotnet test` for full solution may fail with JDK 23 warning).
